@@ -5,4 +5,4 @@
   <div>我是课程1页</div>
 </template>
 
-<script lang="scss" scoped></script>
+<style lang="scss" scoped></style>
