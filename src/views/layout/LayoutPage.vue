@@ -5,6 +5,15 @@ const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
   console.log(key, keyPath)
 }
+
+//处理是否登录
+const isLogin = ref(false)
+
+//处理搜索事件
+const input = ref('')
+const handleSearch = () => {
+  console.log(input)
+}
 </script>
 
 <template>
@@ -28,18 +37,43 @@ const handleSelect = (key, keyPath) => {
     </el-menu-item>
     <div class="flex-grow" />
     <el-menu-item index="/home">首页</el-menu-item>
-    <el-menu-item index="/course" indexPath="">课程</el-menu-item>
-    <el-menu-item index="3">搜索框</el-menu-item>
-    <el-menu-item index="/user/profile" indexPath="">个人中心</el-menu-item>
+    <el-menu-item index="/course">课程</el-menu-item>
+    <el-menu-item index="">
+      <el-input
+        v-model="input"
+        placeholder="搜索课程或老师姓名"
+        @keyup.enter="handleSearch"
+        clearable
+      >
+        <template #suffix>
+          <i-ep-search @click="handleSearch"></i-ep-search>
+        </template>
+      </el-input>
+    </el-menu-item>
+
+    <el-menu-item index="/user/profile" v-if="isLogin">
+      <el-button type="primary" disabled>登录</el-button>
+    </el-menu-item>
+    <el-menu-item disabled="true" v-else>
+      <el-link href="#">
+        <el-avatar class="user_avatar" :size="30" :src="circleUrl" />
+        个人中心
+      </el-link>
+    </el-menu-item>
   </el-menu>
 
   <router-view></router-view>
   <div>我是主页</div>
+  <i-ep-edit></i-ep-edit>
   <LayoutFooter></LayoutFooter>
 </template>
 
 <style lang="scss" scoped>
 .flex-grow {
   flex-grow: 1;
+}
+
+.user_avatar {
+  margin-right: 5px;
 }
 </style>
