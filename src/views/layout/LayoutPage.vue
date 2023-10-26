@@ -29,6 +29,11 @@
 
   <router-view></router-view>
   <div>我是主页</div>
+  <LayoutFooter></LayoutFooter>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.flex-grow {
+  flex-grow: 1;
+}
+</style>
