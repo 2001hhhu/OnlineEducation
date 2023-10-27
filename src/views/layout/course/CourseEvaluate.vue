@@ -4,4 +4,4 @@
   <div>我是课程评价</div>
 </template>
 
-<script lang="scss" scoped></script>
+<style lang="scss" scoped></style>

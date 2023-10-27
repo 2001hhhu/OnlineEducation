@@ -8,6 +8,11 @@ const handleSelect = (key, keyPath) => {
 
 //处理是否登录
 const isLogin = ref(false)
+const handleLogin = () => {
+  isLogin.value = true
+  console.log(isLogin)
+  console.log(isLogin.value)
+}
 
 //处理搜索事件
 const input = ref('')
@@ -44,22 +49,23 @@ const handleSearch = () => {
         placeholder="搜索课程或老师姓名"
         @keyup.enter="handleSearch"
         clearable
+        suffix-icon
       >
-        <template #suffix>
+        <template #append>
           <i-ep-search @click="handleSearch"></i-ep-search>
         </template>
       </el-input>
     </el-menu-item>
 
-    <el-menu-item index="/user/profile" v-if="isLogin">
-      <el-button type="primary" disabled>登录</el-button>
-    </el-menu-item>
-    <el-menu-item disabled="true" v-else>
-      <el-link href="#">
-        <el-avatar class="user_avatar" :size="30" :src="circleUrl" />
+    <div class="login_button" v-if="!isLogin">
+      <el-button @click="handleLogin" size="small" type="primary">登录</el-button>
+    </div>
+    <div class="header_user" v-else>
+      <el-link :underline="false" href="#">
+        <el-avatar class="header_user_avatar" :size="30" :src="circleUrl" />
         个人中心
       </el-link>
-    </el-menu-item>
+    </div>
   </el-menu>
 
   <router-view></router-view>
@@ -72,8 +78,24 @@ const handleSearch = () => {
 .flex-grow {
   flex-grow: 1;
 }
+.el-menu-demo {
+  padding: 0 100px;
+  //给导航的选项之间加间距
+  .el-menu-item {
+    margin: 0 10px;
+  }
+  .header_user {
+    display: flex;
+    justify-content: center;
+    .header_user_avatar {
+      margin-right: 5px;
+    }
+  }
 
-.user_avatar {
-  margin-right: 5px;
+  .login_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 </style>
