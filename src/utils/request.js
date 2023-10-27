@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useUserStore } from '../stores/modules/user'
-// import router from '@/router'
+import router from '@/router'
 const baseURL = ''
 // import { ElMessage } from 'element-plus'
 
@@ -24,10 +24,16 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (res) => {
-    return Promise.reject(res)
+    if (res.data.code !== 0) {
+      return Promise.reject(res)
+    }
+    return res
   },
   (err) => {
-    return Promise.reject(err)
+    if (err.response.status >= 400 && err.response.status < 500) {
+      router.push('/login')
+    }
+    return Promise.reject(err.response.data.error)
   }
 )
 
