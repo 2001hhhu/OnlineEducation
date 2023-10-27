@@ -1,14 +1,18 @@
 <script setup>
 import LayoutFooter from '../../components/LayoutFooter.vue'
+import LoginWindow from '../../components/LoginWindow.vue'
 </script>
 
 <template>
   <el-row class="login-page">
     <el-col :span="12" class="bg">
       <div>图像</div>
+      <el-icon><Search /></el-icon>
+      <el-icon><Search /></el-icon>
+      <el-icon><Search /></el-icon>
     </el-col>
     <el-col :span="6" :offset="3" class="form">
-      <div>表单</div>
+      <LoginWindow></LoginWindow>
     </el-col>
   </el-row>
   <LayoutFooter></LayoutFooter>

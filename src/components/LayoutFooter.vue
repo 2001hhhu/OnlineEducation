@@ -83,9 +83,12 @@
         padding-bottom: 20px;
         .context_com {
           .com_title::before {
+            display: block;
+            float: left;
+            margin-right: 5px;
             content: '';
             width: 3px;
-            height: 14px;
+            height: 15px;
             background-color: #428cf0;
           }
         }
