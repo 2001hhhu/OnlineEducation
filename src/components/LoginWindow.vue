@@ -36,80 +36,88 @@ watch(activeName, () => {
 </script>
 
 <template>
-  <div class="login_window">
-    <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-      <el-tab-pane label="账号登录" name="first">
-        <div></div>
-        <el-form
-          label-position="middle"
-          label-width="100px"
-          :model="loginForm"
-          :rules="rules"
-          size="large"
-          hide-required-asterisk="true"
-          style="max-width: 860px"
-          class="login_form"
-        >
-          <el-form-item label="账号" prop="username">
-            <el-input placeholder="请输入账号" v-model="loginForm.username">
-              <template #prefix>
-                <i-ep-user></i-ep-user>
-              </template>
-            </el-input>
-          </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input placeholder="请输入密码" v-model="loginForm.password"
-              ><template #prefix> <i-ep-lock></i-ep-lock> </template
-            ></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="success">登录</el-button>
-            <el-button @click="register" class="button" type="primary" auto-insert-space>
-              注册
-            </el-button>
-          </el-form-item>
-        </el-form>
-      </el-tab-pane>
-      <el-tab-pane label="手机登录" name="second">
-        <el-form
-          label-position="middle"
-          label-width="100px"
-          :model="loginForm"
-          :rules="rules"
-          style="max-width: 460px"
-          class="login_form"
-        >
-          <el-form-item label="手机号" prop="phone">
-            <el-input placeholder="请输入手机号" v-model="loginForm.phone">
-              <template #prefix>
-                <i-ep-user></i-ep-user>
-              </template>
-            </el-input>
-          </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input placeholder="请输入密码" v-model="loginForm.password"
-              ><template #prefix> <i-ep-lock></i-ep-lock> </template
-            ></el-input>
-          </el-form-item>
-        </el-form>
-      </el-tab-pane>
-      <el-tab-pane label="二维码登录" name="third">Role</el-tab-pane>
-    </el-tabs>
-  </div>
+  <el-tabs
+    v-model="activeName"
+    type="border-card"
+    class="demo-tabs"
+    @tab-click="handleClick"
+  >
+    <el-tab-pane label="账号登录" name="first">
+      <el-form
+        label-position="middle"
+        label-width="100px"
+        :model="loginForm"
+        :rules="rules"
+        size="large"
+        hide-required-asterisk="true"
+        class="login_form"
+      >
+        <el-form-item label="账号" prop="username">
+          <el-input placeholder="请输入账号" v-model="loginForm.username">
+            <template #prefix>
+              <i-ep-user></i-ep-user>
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input placeholder="请输入密码" v-model="loginForm.password"
+            ><template #prefix> <i-ep-lock></i-ep-lock> </template
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success">登录</el-button>
+          <el-button @click="register" class="button" type="primary" auto-insert-space>
+            注册
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </el-tab-pane>
+    <el-tab-pane label="手机登录" name="second">
+      <el-form
+        label-position="middle"
+        label-width="100px"
+        :model="loginForm"
+        :rules="rules"
+        style="max-width: 460px"
+        class="login_form"
+      >
+        <el-form-item label="手机号" prop="phone">
+          <el-input placeholder="请输入手机号" v-model="loginForm.phone">
+            <template #prefix>
+              <i-ep-user></i-ep-user>
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input placeholder="请输入密码" v-model="loginForm.password"
+            ><template #prefix> <i-ep-lock></i-ep-lock> </template
+          ></el-input>
+        </el-form-item>
+      </el-form>
+    </el-tab-pane>
+    <el-tab-pane label="二维码登录" name="third">
+      <div class="qr_code"></div>
+    </el-tab-pane>
+  </el-tabs>
 </template>
 
 <style lang="scss" scoped>
-.login_window {
-  box-shadow: 2px solid;
+.demo-tabs {
+  height: 18vw;
+  width: 30vw;
+  padding: 0, 10px, 20px;
+  .login_form {
+    max-width: 560px;
+    margin-top: 20px;
+  }
+  .qr_code {
+    height: 300px;
+    width: 300px;
+  }
 }
 .demo-tabs > .el-tabs__content {
-  padding: 32px;
   color: #6b778c;
   font-size: 32px;
   font-weight: 600;
-}
-.demo-tabs {
-  .login_form {
-  }
 }
 </style>

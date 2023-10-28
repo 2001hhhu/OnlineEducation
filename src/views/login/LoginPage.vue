@@ -7,9 +7,6 @@ import LoginWindow from '../../components/LoginWindow.vue'
   <el-row class="login-page">
     <el-col :span="12" class="bg">
       <div>图像</div>
-      <el-icon><Search /></el-icon>
-      <el-icon><Search /></el-icon>
-      <el-icon><Search /></el-icon>
     </el-col>
     <el-col :span="6" :offset="3" class="form">
       <LoginWindow></LoginWindow>
@@ -24,6 +21,11 @@ import LoginWindow from '../../components/LoginWindow.vue'
   .bg {
     background: url('@/assets/STU_bgi.jpg') no-repeat 60% center / 600px auto;
     padding: 56px 0 48px;
+  }
+  .form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
 }
 </style>
