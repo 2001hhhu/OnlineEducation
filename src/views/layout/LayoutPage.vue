@@ -6,9 +6,12 @@ const handleSelect = (key, keyPath) => {
   console.log(key, keyPath)
 }
 
+//控制登录对话框
+const dialogTableVisible = ref(false)
 //处理是否登录
 const isLogin = ref(false)
 const handleLogin = () => {
+  dialogTableVisible.value = true
   isLogin.value = true
   console.log(isLogin)
   console.log(isLogin.value)
@@ -67,10 +70,13 @@ const handleSearch = () => {
       </el-link>
     </div>
   </el-menu>
-
+  <el-dialog v-model="dialogTableVisible" class="login_dialog">
+    <LoginWindow></LoginWindow>
+  </el-dialog>
   <router-view></router-view>
   <div>我是主页</div>
   <i-ep-edit></i-ep-edit>
+
   <LayoutFooter></LayoutFooter>
 </template>
 
@@ -96,6 +102,11 @@ const handleSearch = () => {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .login_dialog {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
 }
 </style>

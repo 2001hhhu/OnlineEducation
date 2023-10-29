@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue'
+import { userLoginService, userRegisterService } from '@/api/user.js'
 //获取账号密码
 const loginForm = ref({
   username: '',
@@ -8,8 +9,14 @@ const loginForm = ref({
 })
 //校验登录表单
 const rules = {
-  username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
-  password: [{ required: true, message: '请输入正确的密码', trigger: 'blur' }],
+  username: [
+    { required: true, message: '请输入账号', trigger: 'blur' },
+    { min: 5, max: 10, message: '用户名必须是 5-10位 的字符', trigger: 'blur' }
+  ],
+  password: [
+    { required: true, message: '请输入正确的密码', trigger: 'blur' },
+    { pattern: /^\S{6,15}$/, message: '密码必须是6-15位非空字符', trigger: 'blur' }
+  ],
   phone: [
     { required: true, message: '请输入手机号', trigger: 'blur' },
     {
@@ -33,6 +40,20 @@ watch(activeName, () => {
     phone: ''
   }
 })
+//处理登录事件
+const form = ref() //获取表单元素
+const handleLogin = async () => {
+  await form.value.validate()
+  const res = await userLoginService(loginForm.value)
+  console.log(res)
+}
+//注册页面
+const isRegister = ref(false)
+const handleRegister = async () => {
+  await form.value.validate()
+  const res = await userRegisterService(loginForm.value)
+  console.log(res)
+}
 </script>
 
 <template>
@@ -42,13 +63,14 @@ watch(activeName, () => {
     class="demo-tabs"
     @tab-click="handleClick"
   >
-    <el-tab-pane label="账号登录" name="first">
+    <el-tab-pane label="账号登录" name="first" v-if="!isRegister">
       <el-form
         label-position="middle"
         label-width="100px"
         :model="loginForm"
         :rules="rules"
         size="large"
+        ref="form"
         hide-required-asterisk="true"
         class="login_form"
       >
@@ -65,8 +87,43 @@ watch(activeName, () => {
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="success">登录</el-button>
-          <el-button @click="register" class="button" type="primary" auto-insert-space>
+          <el-button type="success" @click="handleLogin" auto-insert-space
+            >登录</el-button
+          >
+          <el-button @click="isRegister = true" type="primary" auto-insert-space>
+            注册
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </el-tab-pane>
+    <el-tab-pane label="账号注册" name="first" v-else>
+      <el-form
+        label-position="middle"
+        label-width="100px"
+        :model="loginForm"
+        :rules="rules"
+        size="large"
+        ref="form"
+        hide-required-asterisk="true"
+        class="login_form"
+      >
+        <el-form-item label="账号" prop="username">
+          <el-input placeholder="请输入账号" v-model="loginForm.username">
+            <template #prefix>
+              <i-ep-user></i-ep-user>
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input placeholder="请输入密码" v-model="loginForm.password"
+            ><template #prefix> <i-ep-lock></i-ep-lock> </template
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="isRegister = false" type="info" auto-insert-space round
+            >返回</el-button
+          >
+          <el-button @click="handleRegister" type="primary" auto-insert-space>
             注册
           </el-button>
         </el-form-item>
@@ -78,6 +135,8 @@ watch(activeName, () => {
         label-width="100px"
         :model="loginForm"
         :rules="rules"
+        size="large"
+        hide-required-asterisk="true"
         style="max-width: 460px"
         class="login_form"
       >

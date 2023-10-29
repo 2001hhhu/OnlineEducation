@@ -1,5 +1,9 @@
-import { request } from '@/utils/requset.js'
+import request from '@/utils/request.js'
 
 export const userLoginService = ({ username, password }) => {
-  request.post('', { username, password })
+  return request.post('/user', { username, password })
+}
+
+export const userRegisterService = ({ username, password }) => {
+  return request.post('/user', { username, password })
 }

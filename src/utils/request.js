@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { useUserStore } from '../stores/modules/user'
-import router from '@/router'
-const baseURL = ''
+// import { useUserStore } from '../stores/modules/user'
+// import router from '@/router'
+const baseURL = 'http://localhost:3000'
 // import { ElMessage } from 'element-plus'
 
 const instance = axios.create({
@@ -11,10 +11,10 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    const useStore = useUserStore()
-    if (useStore.token) {
-      config.headers.Authorization = useStore.token
-    }
+    // const useStore = useUserStore()
+    // if (useStore.token) {
+    //   config.headers.Authorization = useStore.token
+    // }
     return config
   },
   (err) => {
@@ -24,15 +24,13 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (res) => {
-    if (res.data.code !== 0) {
-      return Promise.reject(res)
-    }
+    console.log(1)
     return res
   },
   (err) => {
-    if (err.response.status >= 400 && err.response.status < 500) {
-      router.push('/login')
-    }
+    // if (err.response.status >= 400 && err.response.status < 500) {
+    //   router.push('/login')
+    // }
     return Promise.reject(err.response.data.error)
   }
 )
