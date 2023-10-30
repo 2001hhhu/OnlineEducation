@@ -85,7 +85,7 @@ const handleSearch = () => {
   flex-grow: 1;
 }
 .el-menu-demo {
-  padding: 0 100px;
+  padding: 0 220px;
   //给导航的选项之间加间距
   .el-menu-item {
     margin: 0 10px;
