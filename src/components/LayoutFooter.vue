@@ -112,8 +112,8 @@
               &:before {
                 content: '';
                 display: block;
-                width: 56px;
-                height: 56px;
+                width: 50px;
+                height: 50px;
                 margin-right: 16px;
                 background: url('@/assets/phone.png') no-repeat #fff;
                 background-size: contain;
@@ -123,8 +123,8 @@
               &:before {
                 content: '';
                 display: block;
-                width: 56px;
-                height: 56px;
+                width: 50px;
+                height: 50px;
                 margin-right: 16px;
                 background: url('@/assets/mail.png') no-repeat #fff;
                 background-size: contain;
@@ -134,8 +134,8 @@
               &:before {
                 content: '';
                 display: block;
-                width: 56px;
-                height: 56px;
+                width: 50px;
+                height: 50px;
                 margin-right: 16px;
                 background: url('@/assets/clock.png') no-repeat #fff;
                 background-size: contain;
