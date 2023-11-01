@@ -45,7 +45,7 @@ const handleSearch = () => {
     </el-menu-item>
     <div class="flex-grow" />
     <el-menu-item index="/home">首页</el-menu-item>
-    <el-menu-item index="/course">课程</el-menu-item>
+    <el-menu-item index="/category">课程</el-menu-item>
     <el-menu-item index="">
       <el-input
         v-model="input"
@@ -74,8 +74,6 @@ const handleSearch = () => {
     <LoginWindow></LoginWindow>
   </el-dialog>
   <router-view></router-view>
-  <div>我是主页</div>
-  <i-ep-edit></i-ep-edit>
 
   <LayoutFooter></LayoutFooter>
 </template>
