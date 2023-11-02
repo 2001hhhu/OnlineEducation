@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 // 处理顶部菜单
-const activeIndex = ref('1')
+const activeIndex = ref('/home')
 const handleSelect = (key, keyPath) => {
   console.log(key, keyPath)
 }

@@ -4,6 +4,8 @@ body {
   background-color: #f5f5f5;
 }
 ul {
+  margin: 0;
+  padding: 0;
   li{
     list-style: none;
   }
@@ -15,4 +17,5 @@ a{
 .wrapper{
   max-width: 1200px;
   margin: 10px auto;
+  background-color: #f7f7f7;
 }
