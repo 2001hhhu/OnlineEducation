@@ -8,7 +8,7 @@
 
 # 2、演示
 
-
+![demo_home](.\demo\demo_home.png)
 
 # 3、技术栈
 
