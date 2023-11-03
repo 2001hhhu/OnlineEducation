@@ -1,12 +1,23 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, defineEmits } from 'vue'
 import { userLoginService, userRegisterService } from '@/api/user.js'
+import { useUserStore } from '@/stores/modules/user.js'
+import { ElMessage } from 'element-plus'
+
 //获取账号密码
 const loginForm = ref({
   username: '',
   password: '',
   phone: ''
 })
+const clearloginForm = () => {
+  loginForm.value = {
+    username: '',
+    password: '',
+    phone: ''
+  }
+}
+
 //校验登录表单
 const rules = {
   username: [
@@ -27,6 +38,7 @@ const rules = {
     }
   ]
 }
+
 //处理标签页跳转
 const activeName = ref('first')
 const handleClick = (tab, event) => {
@@ -34,25 +46,36 @@ const handleClick = (tab, event) => {
   console.log(activeName.value)
 }
 watch(activeName, () => {
-  loginForm.value = {
-    username: '',
-    password: '',
-    phone: ''
-  }
+  clearloginForm()
 })
+
 //处理登录事件
 const form = ref() //获取表单元素
+const userStore = useUserStore()
+const emits = defineEmits(['updateisLogin']) //获取父组件的方法修改dialog的关闭
 const handleLogin = async () => {
   await form.value.validate()
   const res = await userLoginService(loginForm.value)
+  clearloginForm()
   console.log(res)
+  console.log(res.data.length)
+  if (emits && res.status >= 200 && res.status < 400) {
+    emits('updateisLogin', true)
+  }
+  userStore.setToken(res.data[0].token)
+  ElMessage({
+    message: '登陆成功.',
+    type: 'success'
+  })
+  // console.log(userStore.token)
 }
+
 //注册页面
 const isRegister = ref(false)
 const handleRegister = async () => {
   await form.value.validate()
   const res = await userRegisterService(loginForm.value)
-  console.log(res)
+  console.log(res.data.token)
 }
 </script>
 
@@ -82,7 +105,7 @@ const handleRegister = async () => {
           </el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input placeholder="请输入密码" v-model="loginForm.password"
+          <el-input placeholder="请输入密码" type="password" v-model="loginForm.password"
             ><template #prefix> <i-ep-lock></i-ep-lock> </template
           ></el-input>
         </el-form-item>
@@ -115,7 +138,7 @@ const handleRegister = async () => {
           </el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input placeholder="请输入密码" v-model="loginForm.password"
+          <el-input placeholder="请输入密码" type="password" v-model="loginForm.password"
             ><template #prefix> <i-ep-lock></i-ep-lock> </template
           ></el-input>
         </el-form-item>

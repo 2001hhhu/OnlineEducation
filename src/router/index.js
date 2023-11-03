@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useUserStore } from '@/stores/modules/user.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,6 +58,13 @@ const router = createRouter({
       ]
     }
   ]
+})
+
+router.beforeEach((to) => {
+  // 如果没有token, 且访问的是非登录页，拦截到登录，其他情况正常放行
+  const paths = ['/login', '/home', '/category', '/course/detail']
+  const useStore = useUserStore()
+  if (!useStore.token && !paths.includes(to.path)) return '/login'
 })
 
 export default router

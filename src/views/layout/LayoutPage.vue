@@ -1,5 +1,11 @@
 <script setup>
 import { ref } from 'vue'
+import { useUserStore } from '@/stores/modules/user.js'
+import { ElMessage } from 'element-plus'
+
+//使用pinia里user登录后的token
+const userStore = useUserStore()
+
 // 处理顶部菜单
 const activeIndex = ref('/home')
 const handleSelect = (key, keyPath) => {
@@ -8,19 +14,42 @@ const handleSelect = (key, keyPath) => {
 
 //控制登录对话框
 const dialogTableVisible = ref(false)
-//处理是否登录
-const isLogin = ref(false)
+
+//处理是否登录 弹出dialog
+const isLogin = ref()
+if (userStore.token) {
+  isLogin.value = true
+} else {
+  isLogin.value = false
+}
+
 const handleLogin = () => {
   dialogTableVisible.value = true
-  isLogin.value = true
-  console.log(isLogin)
-  console.log(isLogin.value)
+}
+
+// 处理登录框中的登录按钮
+// 若登录成功则自动关闭登录框
+const updateisLogin = (e) => {
+  dialogTableVisible.value = false
+  isLogin.value = e
 }
 
 //处理搜索事件
 const input = ref('')
 const handleSearch = () => {
   console.log(input)
+}
+
+//处理登出
+const useStore = useUserStore()
+const handleQuit = () => {
+  useStore.removeToken()
+  // console.log(useStore.token)
+  isLogin.value = false
+  ElMessage({
+    message: '登出成功.',
+    type: 'success'
+  })
 }
 </script>
 
@@ -64,17 +93,26 @@ const handleSearch = () => {
       <el-button @click="handleLogin" size="small" type="primary">登录</el-button>
     </div>
     <div class="header_user" v-else>
-      <el-link :underline="false" href="#">
-        <el-avatar class="header_user_avatar" :size="30" :src="circleUrl" />
-        个人中心
-      </el-link>
+      <el-dropdown>
+        <el-link :underline="false" href="#">
+          <el-avatar class="header_user_avatar" :size="30" :src="circleUrl" />
+          <span>个人中心</span>
+        </el-link>
+        <el-icon class="el-icon--right">
+          <i-ep-arrow-down />
+        </el-icon>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="handleQuit">退出</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </el-menu>
   <el-dialog v-model="dialogTableVisible" class="login_dialog">
-    <LoginWindow></LoginWindow>
+    <LoginWindow @updateisLogin="updateisLogin"></LoginWindow>
   </el-dialog>
   <router-view></router-view>
-
   <LayoutFooter></LayoutFooter>
 </template>
 
@@ -93,6 +131,8 @@ const handleSearch = () => {
     justify-content: center;
     .header_user_avatar {
       margin-right: 5px;
+    }
+    .el-icon--right {
     }
   }
 

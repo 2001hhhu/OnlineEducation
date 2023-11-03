@@ -14,12 +14,16 @@ const circleUrl = ref(
 // const empty = ref('https://empty') //空头像
 //处理轮播图图片
 const imgurl = [{ url: image1 }, { url: image1 }, { url: image1 }, { url: image1 }]
-//处理观看历史标签页
+//处理观看历史标签页的标签页
 const activeName = ref('first')
+//处理登录注册按钮
+const dialogTableVisible = ref(false)
+const handleLogin = () => {
+  dialogTableVisible.value = true
+}
 </script>
 
 <template>
-  <router-view></router-view>
   <div class="wrapper">
     <div class="carousel">
       <div class="carousel_left">
@@ -53,7 +57,6 @@ const activeName = ref('first')
       <div class="carousel_middle">
         <el-carousel>
           <el-carousel-item v-for="item in imgurl" :key="item">
-            <!-- <a href="#" class="carousel_img" target="_blank"></a> -->
             <img :src="item.url" class="carousel_img" />
           </el-carousel-item>
         </el-carousel>
@@ -61,7 +64,7 @@ const activeName = ref('first')
       <div class="carousel_right">
         <div class="avatar">
           <el-avatar :size="65" :src="circleUrl" />
-          <el-button type="success" round>登录/注册</el-button>
+          <el-button @click="handleLogin" type="success" round>登录/注册</el-button>
         </div>
       </div>
     </div>
@@ -86,7 +89,7 @@ const activeName = ref('first')
                   <a href="#"
                     ><el-image
                       style="width: 200px; height: 122px"
-                      :src="getImageUrl('/images/photo_1.jpg')"
+                      :src="getImageUrl('/images/home/photo_1.jpg')"
                       fit="fit"
                     />
                     <h3 class="view_title">XX课程</h3>
@@ -112,7 +115,10 @@ const activeName = ref('first')
           <li v-for="item in 10" :key="item">
             <div class="box">
               <a href="#"
-                ><el-image :src="getImageUrl('/images/photo_3.jpg')" fit="fit"></el-image>
+                ><el-image
+                  :src="getImageUrl('/images/home/photo_3.jpg')"
+                  fit="fit"
+                ></el-image>
                 <h3>课程名</h3>
                 <p>老师</p></a
               >
@@ -136,9 +142,9 @@ const activeName = ref('first')
               <li v-for="item in 5" :key="item">
                 <a href="#">
                   <div class="rank_item">
-                    <div>{{ item }}</div>
+                    <div style="font-size: 16px">{{ item }}</div>
                     <el-image
-                      :src="getImageUrl('/images/photo_3.jpg')"
+                      :src="getImageUrl('/images/home/photo_3.jpg')"
                       fit="fit"
                     ></el-image>
                     <div class="course_introduction">
@@ -156,10 +162,13 @@ const activeName = ref('first')
     <div class="end">
       <h2>开启学习之旅</h2>
       <p>有志、有识、有恒、有为</p>
-      <el-image :src="getImageUrl('/images/photo_2.jpg')" fit="fit" />
+      <el-image :src="getImageUrl('/images/home/photo_2.jpg')" fit="fit" />
       <br />
       <el-button type="primary" round>Start to learn</el-button>
     </div>
+    <el-dialog v-model="dialogTableVisible" class="login_dialog">
+      <LoginWindow></LoginWindow>
+    </el-dialog>
   </div>
 </template>
 
@@ -329,8 +338,8 @@ const activeName = ref('first')
         height: 85%;
         ul {
           display: flex;
+          height: 100%;
           flex-direction: column;
-
           justify-content: space-between;
           li {
             flex: 1;
@@ -339,6 +348,7 @@ const activeName = ref('first')
               .el-image {
                 height: 63px;
                 width: 112px;
+                margin-left: 10px;
               }
               .course_introduction {
                 margin-left: 10px;
