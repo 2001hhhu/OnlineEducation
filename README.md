@@ -8,7 +8,13 @@
 
 # 2、演示
 
+主页
+
 ![demo_home](.\demo\demo_home.png)
+
+课程分类页
+
+![demo_category](.\demo\demo_category.png)
 
 # 3、技术栈
 
