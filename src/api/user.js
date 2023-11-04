@@ -16,3 +16,7 @@ export const userLoginService = ({ username, password }) => {
 export const userRegisterService = ({ username, password }) => {
   return request.post('/user', { username, password })
 }
+
+export const userInfoService = () => {
+  return request.get('/userinfo')
+}
