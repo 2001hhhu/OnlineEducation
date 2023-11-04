@@ -7,10 +7,10 @@
       "token": 123
     }
   ],
-  "course-category": {
+  "coursecategory": {
     "name": ["全部", "工科", "理科", "文学", "音乐与艺术",  "心理学", "医学", "外语", "历史与政治"]
   },
-  "course-list": [
+  "courselist": [
     {
       "id": 1,
       "url": "/images/course/course-photo-2.png",
@@ -37,6 +37,19 @@
       "participants": 89,
       "hour": 64,
       "credit": 4  
+    }
+  ],
+  "userinfo": [
+    {
+      "id": 1,
+      "username": "2001hhhu",
+      "avatar": "",
+      "schoole": "STU",
+      "grade": 2020,
+      "speciality": "计算机科学与技术",
+      "college": "工学院",
+      "gender": 1,
+      "name": "hhh"
     }
   ]
   
