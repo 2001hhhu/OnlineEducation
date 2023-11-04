@@ -6,5 +6,38 @@
       "password": "123456",
       "token": 123
     }
+  ],
+  "course-category": {
+    "name": ["全部", "工科", "理科", "文学", "音乐与艺术",  "心理学", "医学", "外语", "历史与政治"]
+  },
+  "course-list": [
+    {
+      "id": 1,
+      "url": "/images/course/course-photo-2.png",
+      "name": "计算机网络",
+      "lecturer": "蔡老师",
+      "participants": 20,
+      "hour": 32,
+      "credit": 2  
+    },
+    {
+      "id": 2,
+      "url": "/images/course/course-photo-1.jpg",
+      "name": "数据结构与算法",
+      "lecturer": "陈老师",
+      "participants": 65,
+      "hour": 48,
+      "credit": 4  
+    },
+    {
+      "id": 3,
+      "url": "/images/course/course-photo-3.jpg",
+      "name": "高等数学",
+      "lecturer": "陈老师",
+      "participants": 89,
+      "hour": 64,
+      "credit": 4  
+    }
   ]
+  
 }
