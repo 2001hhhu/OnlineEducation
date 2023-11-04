@@ -8,9 +8,7 @@ const userStore = useUserStore()
 
 // 处理顶部菜单
 const activeIndex = ref('/home')
-const handleSelect = (key, keyPath) => {
-  console.log(key, keyPath)
-}
+//
 
 //控制登录对话框
 const dialogTableVisible = ref(false)
@@ -61,54 +59,62 @@ const handleQuit = () => {
               item: 选中菜单项, routeResult: vue-router 的返回值
        router 是否启用 vue-router 模式。
   -->
-  <el-menu
-    :default-active="activeIndex"
-    class="el-menu-demo"
-    mode="horizontal"
-    :ellipsis="false"
-    router="true"
-    @select="handleSelect"
-  >
-    <el-menu-item index="0">
-      <img style="width: 100px" src="@/assets/logo.drawio.svg" alt="logo" />
-    </el-menu-item>
-    <div class="flex-grow" />
-    <el-menu-item index="/home">首页</el-menu-item>
-    <el-menu-item index="/category">课程</el-menu-item>
-    <el-menu-item index="">
-      <el-input
-        v-model="input"
-        placeholder="搜索课程或老师姓名"
-        @keyup.enter="handleSearch"
-        clearable
-        suffix-icon
-      >
-        <template #append>
-          <i-ep-search @click="handleSearch"></i-ep-search>
-        </template>
-      </el-input>
-    </el-menu-item>
+  <div class="header_menu">
+    <el-menu
+      :default-active="activeIndex"
+      class="el-menu-demo"
+      mode="horizontal"
+      :ellipsis="false"
+      router="true"
+      @select="handleSelect"
+    >
+      <el-menu-item index="/login">
+        <img style="width: 100px" src="@/assets/logo.drawio.svg" alt="logo" />
+      </el-menu-item>
+      <div class="flex-grow" />
+      <el-menu-item index="/home">首页</el-menu-item>
+      <el-menu-item index="/category">课程</el-menu-item>
+      <el-menu-item index="">
+        <el-input
+          v-model="input"
+          placeholder="搜索课程或老师姓名"
+          @keyup.enter="handleSearch"
+          clearable
+          suffix-icon
+        >
+          <template #append>
+            <i-ep-search @click="handleSearch"></i-ep-search>
+          </template>
+        </el-input>
+      </el-menu-item>
 
-    <div class="login_button" v-if="!isLogin">
-      <el-button @click="handleLogin" size="small" type="primary">登录</el-button>
-    </div>
-    <div class="header_user" v-else>
-      <el-dropdown>
-        <el-link :underline="false" href="#">
+      <div class="login_button" v-if="!isLogin">
+        <el-button @click="handleLogin" size="small" type="primary">登录</el-button>
+      </div>
+      <div class="header_user" v-else>
+        <el-dropdown>
+          <!-- <el-link :underline="false" href="#">
           <el-avatar class="header_user_avatar" :size="30" :src="circleUrl" />
           <span>个人中心</span>
-        </el-link>
-        <el-icon class="el-icon--right">
-          <i-ep-arrow-down />
-        </el-icon>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item @click="handleQuit">退出</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-    </div>
-  </el-menu>
+        </el-link> -->
+          <router-link class="user" to="/user">
+            <el-avatar class="header_user_avatar" :size="30" :src="circleUrl" />
+            <span>个人中心</span>
+            <el-icon class="el-icon--right">
+              <i-ep-arrow-down />
+            </el-icon>
+          </router-link>
+
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item @click="handleQuit">退出</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+    </el-menu>
+  </div>
+
   <el-dialog v-model="dialogTableVisible" class="login_dialog">
     <LoginWindow @updateisLogin="updateisLogin"></LoginWindow>
   </el-dialog>
@@ -120,31 +126,37 @@ const handleQuit = () => {
 .flex-grow {
   flex-grow: 1;
 }
-.el-menu-demo {
-  padding: 0 220px;
-  //给导航的选项之间加间距
-  .el-menu-item {
-    margin: 0 10px;
-  }
-  .header_user {
-    display: flex;
-    justify-content: center;
-    .header_user_avatar {
-      margin-right: 5px;
+.header_menu {
+  background-color: #fff;
+  .el-menu-demo {
+    max-width: 1200px;
+    padding-right: 20px;
+    margin: 0 auto;
+    //给导航的选项之间加间距
+    .el-menu-item {
+      margin: 0 10px;
     }
-    .el-icon--right {
+    .header_user {
+      .user {
+        display: flex;
+        align-items: center;
+        line-height: 59px;
+      }
+      .header_user_avatar {
+        margin-right: 5px;
+      }
     }
-  }
 
-  .login_button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .login_dialog {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    .login_button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login_dialog {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
   }
 }
 </style>

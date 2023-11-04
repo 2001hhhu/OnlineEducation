@@ -57,8 +57,6 @@ const handleLogin = async () => {
   await form.value.validate()
   const res = await userLoginService(loginForm.value)
   clearloginForm()
-  console.log(res)
-  console.log(res.data.length)
   if (emits && res.status >= 200 && res.status < 400) {
     emits('updateisLogin', true)
   }
