@@ -1,18 +1,15 @@
 <script setup>
 import { ref } from 'vue'
-import { userInfoService } from '@/api/user.js'
+import { useUserStore } from '@/stores/modules/user.js'
 
 //获取用户信息
 const userinfo = ref({})
+const userStore = useUserStore()
+userStore.getUser()
+userinfo.value = userStore.user
 const circleUrl = ref(
   'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
 )
-const getUserInfo = async () => {
-  const res = await userInfoService()
-  console.log(res.data[0])
-  userinfo.value = res.data[0]
-}
-getUserInfo()
 
 //处理个性签名
 const personal_input = ref('')

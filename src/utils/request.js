@@ -15,6 +15,7 @@ instance.interceptors.request.use(
     // if (useStore.token) {
     //   config.headers.Authorization = useStore.token
     // }
+    // console.log(config)
     return config
   },
   (err) => {
@@ -35,6 +36,7 @@ instance.interceptors.response.use(
     if (err.response.status >= 400 && err.response.status < 500) {
       router.push('/login')
     }
+    ElMessage.error(err.response.data.erro)
     return Promise.reject(err.response.data.error)
   }
 )

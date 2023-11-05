@@ -20,3 +20,7 @@ export const userRegisterService = ({ username, password }) => {
 export const userInfoService = () => {
   return request.get('/userinfo')
 }
+
+export const updateUserInfoService = (id, obj) => {
+  return request.put(`/userinfo/${id}`, obj)
+}
