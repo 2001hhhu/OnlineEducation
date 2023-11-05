@@ -42,14 +42,22 @@
   "userinfo": [
     {
       "id": 1,
-      "username": "2001hhhu",
       "avatar": "",
-      "schoole": "STU",
+      "username": "2001hhhu",
+      "password": 123456,
+      "nickname": "花呗鳄鱼",
+      "name": "hhh",
+      "phone": 13612345678,
+      "email": "2548098501@qq.com",
+      "IP": "广东",
+      "school": "STU",
       "grade": 2020,
       "speciality": "计算机科学与技术",
-      "college": "工学院",
+      "colleage": "工学院",
+      "address": "广东汕头",
       "gender": 1,
-      "name": "hhh"
+      "reqistration": "2020-9-1",
+      "history": ["1","2","3"]
     }
   ]
   
