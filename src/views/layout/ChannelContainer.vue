@@ -26,7 +26,7 @@ const handleLogin = () => {
 <template>
   <div class="wrapper">
     <div class="carousel">
-      <div class="carousel_left">
+      <div class="carousel-left">
         <ul>
           <li>
             <div><a href="#">计算机</a></div>
@@ -54,14 +54,14 @@ const handleLogin = () => {
           </li>
         </ul>
       </div>
-      <div class="carousel_middle">
+      <div class="carousel-middle">
         <el-carousel>
           <el-carousel-item v-for="item in imgurl" :key="item">
-            <img :src="item.url" class="carousel_img" />
+            <img :src="item.url" class="carousel-img" />
           </el-carousel-item>
         </el-carousel>
       </div>
-      <div class="carousel_right">
+      <div class="carousel-right">
         <div class="avatar">
           <el-avatar :size="65" :src="circleUrl" />
           <el-button @click="handleLogin" type="success" round>登录/注册</el-button>
@@ -70,7 +70,7 @@ const handleLogin = () => {
     </div>
     <div class="coorperation">
       <ul>
-        <a href="#" target="_blank" class="coorperation_1">查看所有合作方</a>
+        <a href="#" class="coorperation-1">查看所有合作方</a>
         <li><a href="#">XX高校</a></li>
         <li><a href="#">XX高校</a></li>
         <li><a href="#">XX高校</a></li>
@@ -78,7 +78,7 @@ const handleLogin = () => {
         <li><a href="#">XX高校</a></li>
       </ul>
     </div>
-    <div class="view_history">
+    <div class="view-history">
       <h2>观看历史</h2>
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane label="1" name="first">
@@ -92,7 +92,7 @@ const handleLogin = () => {
                       :src="getImageUrl('/images/home/photo_1.jpg')"
                       fit="fit"
                     />
-                    <h3 class="view_title">XX课程</h3>
+                    <h3>XX课程</h3>
                     <p>XX大学</p>
                     <span>老师</span></a
                   >
@@ -127,28 +127,28 @@ const handleLogin = () => {
         </ul>
       </div>
     </div>
-    <div class="rank_list">
+    <div class="rank-list">
       <h2>本周课程排行</h2>
       <div class="list">
         <div v-for="item in 3" :key="item" class="rank">
-          <div class="rank_head">
+          <div class="rank-head">
             <div class="title">
               <h3>热门排行</h3>
               <span>Top50</span>
             </div>
           </div>
-          <div class="rank_body">
+          <div class="rank-body">
             <ul>
               <li v-for="item in 5" :key="item">
                 <a href="#">
-                  <div class="rank_item">
+                  <div class="rank-item">
                     <div style="font-size: 16px">{{ item }}</div>
                     <el-image
                       :src="getImageUrl('/images/home/photo_3.jpg')"
                       fit="fit"
                     ></el-image>
-                    <div class="course_introduction">
-                      <p class="course_title">课程名</p>
+                    <div class="course-introduction">
+                      <p class="course-title">课程名</p>
                       <p>XX大学</p>
                     </div>
                   </div>
@@ -166,7 +166,7 @@ const handleLogin = () => {
       <br />
       <el-button type="primary" round>Start to learn</el-button>
     </div>
-    <el-dialog v-model="dialogTableVisible" class="login_dialog">
+    <el-dialog v-model="dialogTableVisible" class="login-dialog">
       <LoginWindow></LoginWindow>
     </el-dialog>
   </div>
@@ -179,7 +179,7 @@ const handleLogin = () => {
   justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 10px;
-  .carousel_left {
+  .carousel-left {
     flex: 1;
     padding-bottom: 10px;
     border-radius: 8px;
@@ -200,15 +200,15 @@ const handleLogin = () => {
       }
     }
   }
-  .carousel_middle {
+  .carousel-middle {
     flex: 5;
-    .carousel_img {
+    .carousel-img {
       width: 100%;
       border-radius: 8px;
       background-size: cover;
     }
   }
-  .carousel_right {
+  .carousel-right {
     flex: 1;
     border-radius: 8px;
     margin-left: 10px;
@@ -232,17 +232,19 @@ const handleLogin = () => {
   background-color: #fff;
   padding-right: 20px;
   margin-bottom: 40px;
+
   ul {
     display: flex;
     justify-content: space-between;
     line-height: 60px;
-    .coorperation_1 {
+    .coorperation-1 {
       background: url('@/assets/more.png') no-repeat right center;
       padding-right: 20px;
+      margin-left: 10px;
     }
   }
 }
-.view_history {
+.view-history {
   margin-bottom: 50px;
   .view {
     display: flex;
@@ -306,7 +308,7 @@ const handleLogin = () => {
     }
   }
 }
-.rank_list {
+.rank-list {
   margin-bottom: 50px;
 
   .list {
@@ -317,7 +319,7 @@ const handleLogin = () => {
       width: 32%;
       // flex: 1;
       background-color: #fff;
-      .rank_head {
+      .rank-head {
         height: 15%;
         background-image: linear-gradient(#f3b573, #fff);
         .title {
@@ -333,7 +335,7 @@ const handleLogin = () => {
           }
         }
       }
-      .rank_body {
+      .rank-body {
         padding-left: 14px;
         height: 85%;
         ul {
@@ -343,20 +345,20 @@ const handleLogin = () => {
           justify-content: space-between;
           li {
             flex: 1;
-            .rank_item {
+            .rank-item {
               display: flex;
               .el-image {
                 height: 63px;
                 width: 112px;
                 margin-left: 10px;
               }
-              .course_introduction {
+              .course-introduction {
                 margin-left: 10px;
                 p {
                   margin: 0px;
                   font-size: 12px;
                 }
-                .course_title {
+                .course-title {
                   margin-bottom: 3px;
                   font-size: 14px;
                 }

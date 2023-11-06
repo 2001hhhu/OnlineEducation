@@ -93,7 +93,7 @@ const handleRegister = async () => {
         size="large"
         ref="form"
         hide-required-asterisk="true"
-        class="login_form"
+        class="login-form"
       >
         <el-form-item label="账号" prop="username">
           <el-input placeholder="请输入账号" v-model="loginForm.username">
@@ -126,7 +126,7 @@ const handleRegister = async () => {
         size="large"
         ref="form"
         hide-required-asterisk="true"
-        class="login_form"
+        class="login-form"
       >
         <el-form-item label="账号" prop="username">
           <el-input placeholder="请输入账号" v-model="loginForm.username">
@@ -176,7 +176,7 @@ const handleRegister = async () => {
       </el-form>
     </el-tab-pane>
     <el-tab-pane label="二维码登录" name="third">
-      <div class="qr_code"></div>
+      <div class="qr-code"></div>
     </el-tab-pane>
   </el-tabs>
 </template>
@@ -186,11 +186,11 @@ const handleRegister = async () => {
   height: 18vw;
   width: 30vw;
   padding: 0, 10px, 20px;
-  .login_form {
+  .login-form {
     max-width: 560px;
     margin-top: 20px;
   }
-  .qr_code {
+  .qr-code {
     height: 300px;
     width: 300px;
   }

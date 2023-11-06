@@ -229,11 +229,11 @@ const handleCommmit = async () => {
   </div>
 
   <!-- 编辑弹窗 -->
-  <div class="edit_dialog">
+  <div class="edit-dialog">
     <el-dialog v-model="dialogFormVisible" title="编辑个人信息">
       <el-form :model="userForm" :rules="rules" hide-required-asterisk="true">
-        <div class="dialog_body">
-          <div class="dialog_left">
+        <div class="dialog-body">
+          <div class="dialog-left">
             <el-form-item label="头像" prop>
               <el-image v-if="userinfo.url"></el-image>
               <el-image :src="squareUrl" v-else></el-image>
@@ -255,7 +255,7 @@ const handleCommmit = async () => {
               </el-radio-group>
             </el-form-item>
           </div>
-          <div class="dialog_right">
+          <div class="dialog-right">
             <el-form-item label="邮箱" prop="email">
               <el-input v-model="userForm.email" />
             </el-form-item>
@@ -293,6 +293,9 @@ const handleCommmit = async () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    strong {
+      font-size: 18px;
+    }
     span {
       font-size: 18px;
     }
@@ -307,11 +310,11 @@ const handleCommmit = async () => {
     }
   }
 }
-.edit_dialog {
-  .dialog_body {
+.edit-dialog {
+  .dialog-body {
     display: flex;
     overflow: auto;
-    .dialog_left {
+    .dialog-left {
       flex: 1;
       margin-right: 20px;
       .el-form-item {
@@ -321,7 +324,7 @@ const handleCommmit = async () => {
         }
       }
     }
-    .dialog_right {
+    .dialog-right {
       flex: 1;
       overflow: hidden;
     }

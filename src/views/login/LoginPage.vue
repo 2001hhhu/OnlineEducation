@@ -21,7 +21,7 @@ const updateisLogin = () => {
 </script>
 
 <template>
-  <div class="login_head"></div>
+  <div class="login-head"></div>
   <el-row class="login-page">
     <el-col :span="12" class="bg">
       <el-carousel>
@@ -38,7 +38,7 @@ const updateisLogin = () => {
 </template>
 
 <style lang="scss" scoped>
-.login_head {
+.login-head {
   position: fixed;
   width: 100%;
   height: 100px;

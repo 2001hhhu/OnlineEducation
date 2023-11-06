@@ -84,14 +84,14 @@ getCourseList()
             <el-image :src="getImageUrl(item.url)" fit="fit"></el-image>
           </div>
 
-          <div class="course_introduce">
+          <div class="course-introduce">
             <div>
               <p>{{ item.name }}</p>
               <span>{{ item.lecturer }}</span
               ><span>参加人数：{{ item.participants }}</span
               ><span>学时：{{ item.hour }}</span> <span>学分{{ item.credit }}</span>
             </div>
-            <div class="detail_introudce">课程介绍巴拉巴拉...</div>
+            <div class="detail-introudce">课程介绍巴拉巴拉...</div>
           </div>
         </li>
       </ul>
@@ -153,7 +153,6 @@ span {
   }
 }
 .body {
-  height: 600px;
   width: 100%;
   // background-color: #fff;
   margin-top: 30px;
@@ -167,14 +166,14 @@ span {
         width: 266px;
       }
     }
-    .course_introduce {
+    .course-introduce {
       display: flex;
       flex-direction: column;
       margin-left: 20px;
       span {
         margin: 5px;
       }
-      .detail_introudce {
+      .detail-introudce {
         margin-top: 10px;
         font-size: 14px;
       }
