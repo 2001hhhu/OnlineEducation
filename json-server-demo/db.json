@@ -8,7 +8,17 @@
     }
   ],
   "coursecategory": {
-    "name": ["全部", "工科", "理科", "文学", "音乐与艺术",  "心理学", "医学", "外语", "历史与政治"]
+    "name": [
+      "全部",
+      "工科",
+      "理科",
+      "文学",
+      "音乐与艺术",
+      "心理学",
+      "医学",
+      "外语",
+      "历史与政治"
+    ]
   },
   "courselist": [
     {
@@ -18,7 +28,8 @@
       "lecturer": "蔡老师",
       "participants": 20,
       "hour": 32,
-      "credit": 2  
+      "credit": 2,
+      "video": 7
     },
     {
       "id": 2,
@@ -27,7 +38,8 @@
       "lecturer": "陈老师",
       "participants": 65,
       "hour": 48,
-      "credit": 4  
+      "credit": 4,
+      "video": 7
     },
     {
       "id": 3,
@@ -36,7 +48,48 @@
       "lecturer": "陈老师",
       "participants": 89,
       "hour": 64,
-      "credit": 4  
+      "credit": 4,
+      "video": 7
+    },
+    {
+      "id": 4,
+      "url": "/images/course/course-photo-3.jpg",
+      "name": "高等物理",
+      "lecturer": "陈老师",
+      "participants": 77,
+      "hour": 64,
+      "credit": 4,
+      "video": 7
+    },
+    {
+      "id": 5,
+      "url": "/images/course/course-photo-3.jpg",
+      "name": "智能系统",
+      "lecturer": "江老师",
+      "participants": 77,
+      "hour": 64,
+      "credit": 4,
+      "video": 7
+    },
+    {
+      "id": 6,
+      "url": "/images/course/course-photo-3.jpg",
+      "name": "C语言",
+      "lecturer": "郑老师",
+      "participants": 77,
+      "hour": 64,
+      "credit": 4,
+      "video": 7
+    },
+    {
+      "id": 7,
+      "url": "/images/course/course-photo-3.jpg",
+      "name": "Java",
+      "lecturer": "张老师",
+      "participants": 77,
+      "hour": 64,
+      "credit": 4,
+      "video": 7
     }
   ],
   "userinfo": [
@@ -51,14 +104,102 @@
       "email": "2548098501@qq.com",
       "IP": "广东",
       "school": "STU",
-      "grade": 2020,
+      "grade": "2020",
       "speciality": "计算机科学与技术",
       "colleage": "工学院",
       "address": "广东汕头",
       "gender": 1,
       "reqistration": "2020-9-1",
-      "history": ["1","2","3"]
+      "history": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "weekDuration": [8,8,8,8,8,8,8],
+      "monthDuration": [8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],
+      "yearDuration": [248,216,248,240,248,240,248,248,240,248,240,248],
+      "sumDuration": 2920,
+      "keep": 365
     }
-  ]
-  
+  ],
+  "activate": [
+      {
+        "id": 1,
+        "isLogin": [1,1,1,1,1,1,1],
+        "duratioin": [64,56,45,22,14,23,32]
+      }
+    ],
+    "resource": [
+      {
+        "id": 1,
+        "course": [1,2,3,4,5,6,7],
+        "video": [[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7]],
+        "playBackCount": [2,5,11,6,7,2,3],
+        "docunment": [1,2,3,4,5,6,7],
+        "download": [12,13,15,21,51,21,31]
+      }
+    ],
+    "learn": [
+      {
+        "user": 1,
+        "id": 1,
+        "course": "计算机网络",
+        "completion": 3,
+        "incomplete": 4
+      },
+      {
+        "user": 1,
+        "id": 2,
+        "course": "数据结构与算法",
+        "completion": 3,
+        "incomplete": 4
+      },
+      {
+        "user": 1,
+        "id": 3,
+        "course": "高等数学",
+        "completion": 3,
+        "incomplete": 4
+      },
+      {
+        "user": 1,
+        "id": 4,
+        "course": "高等物理",
+        "completion": 3,
+        "incomplete": 4
+      },
+      {
+        "user": 1,
+        "id": 5,
+        "course": "智能系统",
+        "completion": 3,
+        "incomplete": 4
+      },
+      {
+        "user": 1,
+        "id": 6,
+        "course": "C语言",
+        "completion": 3,
+        "incomplete": 4
+      },
+      {
+        "user": 1,
+        "id": 7,
+        "course": "张老师",
+        "completion": 3,
+        "incomplete": 4
+      }
+    ],
+    "course": [
+      {
+        "id": 1,
+        "course": [1,2,3,4,5,6,7],
+        "procurement": [11,20,30,22,24,23,30],
+        "sales": [200,3000,520,244,23,56,24]
+      }
+    ]
 }

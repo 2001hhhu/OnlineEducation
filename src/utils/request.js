@@ -34,9 +34,10 @@ instance.interceptors.response.use(
   },
   (err) => {
     if (err.response.status >= 400 && err.response.status < 500) {
-      router.push('/login')
+      ElMessage.error(err.response.status)
+      router.push('/home')
     }
-    ElMessage.error(err.response.data.erro)
+    ElMessage.error(err.response.data.error)
     return Promise.reject(err.response.data.error)
   }
 )
