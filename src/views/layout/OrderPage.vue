@@ -4,4 +4,4 @@
   <div>我是订单页</div>
 </template>
 
-<script lang="scss" scoped></script>
+<style lang="scss" scoped></style>
