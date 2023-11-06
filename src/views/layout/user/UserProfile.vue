@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/modules/user.js'
-import { updateUserInfoService } from '@/stores/modules/user.js'
+import { updateUserInfoService } from '@/api/user.js'
 import { ElMessage } from 'element-plus'
 
 //获取用户个人信息
@@ -33,8 +33,6 @@ const userForm = ref({
   address: ''
 })
 userForm.value = userinfo.value
-console.log(userForm.value.school)
-console.log(userinfo.value)
 const rules = {
   nickname: [{ required: true, message: '昵称不能为空', tigger: 'blur' }],
   password: [
@@ -58,12 +56,14 @@ const rules = {
 }
 //处理提交按钮
 const handleCommmit = async () => {
-  await userForm.value.validate()
-  await updateUserInfoService(userForm.value)
+  // await userForm.value.validate()
+  await updateUserInfoService(userForm.value.id, userForm.value)
+  userStore.getUser()
   ElMessage({
-    message: '修改成功.',
+    message: '提交成功.',
     type: 'success'
   })
+  console.log(userStore.user)
 }
 </script>
 
