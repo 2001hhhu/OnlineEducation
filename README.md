@@ -16,15 +16,29 @@
 
 ![demo_category](.\demo\demo_category.png)
 
+个人主页
+
+![demo_user_profile](.\demo\demo_user_profile.png)
+
+用户报表
+
+![demo_user_report](.\demo\demo_user_report.png)
+
 # 3、技术栈
 
-Vue3+Pinia+Vue router+websocket+ECharts+Vite+Element-plus
+Vue3+Element-plus+Pinia+Vue router+websocket+ECharts+Vite
 
 暂用JSON-server模拟后端数据
 
 ## 4、构建
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### json-server启动
+
+文件在./json-server-demo/db.json
+
+```
+json-server --watch db.json
+```
 
 ## Project Setup
 
