@@ -8,7 +8,7 @@
     }
   ],
   "coursecategory": {
-    "name": [
+    "category": [
       "全部",
       "工科",
       "理科",
@@ -29,7 +29,10 @@
       "participants": 20,
       "hour": 32,
       "credit": 2,
-      "video": 7
+      "video": 7,
+      "term": "2021-2022学年 第一学期",
+      "category": "工科",
+      "state": "开课中"
     },
     {
       "id": 2,
@@ -39,7 +42,10 @@
       "participants": 65,
       "hour": 48,
       "credit": 4,
-      "video": 7
+      "video": 7,
+      "term": "2021-2022学年 第一学期",
+      "category": "工科",
+      "state": "开课中"
     },
     {
       "id": 3,
@@ -49,7 +55,10 @@
       "participants": 89,
       "hour": 64,
       "credit": 4,
-      "video": 7
+      "video": 7,
+      "term": "2021-2022学年 第一学期",
+      "category": "工科",
+      "state": "开课中"
     },
     {
       "id": 4,
@@ -59,7 +68,10 @@
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7
+      "video": 7,
+      "term": "2021-2022学年 第一学期",
+      "category": "工科",
+      "state": "即将开课"
     },
     {
       "id": 5,
@@ -69,7 +81,10 @@
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7
+      "video": 7,
+      "term": "2021-2022学年 第二学期",
+      "category": "工科",
+      "state": "开课中"
     },
     {
       "id": 6,
@@ -79,7 +94,10 @@
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7
+      "video": 7,
+      "term": "2021-2022学年 第二学期",
+      "category": "工科",
+      "state": "开课中"
     },
     {
       "id": 7,
@@ -89,7 +107,10 @@
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7
+      "video": 7,
+      "term": "2022-2023学年 第一学期",
+      "category": "工科",
+      "state": "已结课"
     }
   ],
   "userinfo": [
