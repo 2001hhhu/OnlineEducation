@@ -15,11 +15,10 @@ const reportModule = useReportStore()
 reportModule.getLearnModule(1)
 
 // 导入用户学习进度环形图
-const course1 = ref()
-console.log(course1.value)
+let course1 = ref()
 const init2 = () => {
   const chart = echarts.init(document.querySelector('.course_report'))
-
+  // const chart = echarts.init(course1.value)
   window.addEventListener(
     'resize',
     () => {
@@ -76,9 +75,8 @@ userStore.getUser()
 const report1 = ref()
 const report2 = ref()
 const report3 = ref()
-console.log(report1.value)
 const init = (title, data, xdata, ref) => {
-  const chart1 = echarts.init(ref)
+  const chart1 = echarts.init(document.querySelector(ref))
 
   // 图表自适应
   window.addEventListener(
@@ -112,7 +110,7 @@ const init = (title, data, xdata, ref) => {
 }
 const weekData = userStore.user.weekDuration
 const monthData = userStore.user.monthDuration
-const yearDuration = userStore.user.yearDuration
+const yearData = userStore.user.yearDuration
 const dayX = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
 const weekX = []
 for (let i = 1; i <= 31; i++) {
@@ -133,22 +131,37 @@ const yearX = [
   '十二月'
 ]
 onMounted(() => {
-  // nextTick(() => {
-
-  // })
-  init('每日学习时长', weekData, dayX, report1.value)
-  init('每日学习时长', monthData, weekX, report2.value)
-  init('每日学习时长', yearDuration, yearX, report3.value)
   init2()
+  // init2()
+  // nextTick(() => {
+  //   init('每日学习时长', weekData, dayX, '.report-1')
+  //   init('每日学习时长', monthData, weekX, '.report-2')
+  //   init('每日学习时长', yearData, yearX, '.report-3')
+  // })
+  init('每日学习时长', weekData, dayX, '.report-1')
+  init('每日学习时长', monthData, weekX, '.report-2')
+  init('每月学习总时长', yearData, yearX, '.report-3')
+  // handleClick()
 })
 
 // 处理选择时段的标签页
 const activeDate = ref('周')
 // const handleClick = (tab) => {
-//   if (tab.name === '周') {
-
-//       }
-//     },
+//   // if (tab.name === '周') {
+//   //   nextTick(() => {
+//   //     chart1.value.resize()
+//   //   })
+//   // }
+//   // if (tab.name === '月') {
+//   //   nextTick(() => {
+//   //     chart1.value.resize()
+//   //   })
+//   // }
+//   // if (tab.name === '年') {
+//   //   nextTick(() => {
+//   //     chart1.value.resize()
+//   //   })
+//   // }
 // }
 </script>
 
@@ -206,15 +219,42 @@ const activeDate = ref('周')
             </li>
           </ul>
         </div>
-        <el-tabs v-model="activeDate" @click="handleClick">
+        <!-- 尝试对el-tab里的echart进行修bug -->
+        <!-- <div class="report-1" ref="report1"></div>
+        <div class="report-2" ref="report2"></div>
+        <div class="report-3" ref="report3"></div> -->
+        <!-- <el-tabs v-model="activeDate" @click="handleClick">
           <el-tab-pane label="周" name="周" lazy="true">
-            <div class="report-1" ref="report1"></div>
+            <div class="report-1" id="1" ref="report1"></div>
           </el-tab-pane>
           <el-tab-pane label="月" name="月" lazy="true">
-            <div class="report-1" ref="report2"></div>
+            <div class="report-2" id="2" ref="report2"></div>
           </el-tab-pane>
           <el-tab-pane label="年" name="年" lazy="true">
-            <div class="report-1" ref="report3"></div>
+            <div class="report-3" id="3" ref="report3"></div>
+          </el-tab-pane>
+        </el-tabs> -->
+        <!-- <el-tabs v-model="activeDate" @click="handleClick">
+          <el-tab-pane label="周" name="周">
+            <div v-if="activeDate === '周'" class="report-1" id="1" ref="report1"></div>
+          </el-tab-pane>
+
+          <el-tab-pane label="月" name="月">
+            <div v-if="activeDate === '月'" class="report-2" id="2" ref="report2"></div>
+          </el-tab-pane>
+          <el-tab-pane label="年" name="年">
+            <div v-if="activeDate === '年'" class="report-3" id="3" ref="report3"></div>
+          </el-tab-pane> -->
+
+        <el-tabs v-model="activeDate" @click="handleClick">
+          <el-tab-pane label="周" name="周">
+            <div class="report-1" id="1" ref="report1"></div>
+          </el-tab-pane>
+          <el-tab-pane label="月" name="月">
+            <div class="report-2" id="2" ref="report2"></div>
+          </el-tab-pane>
+          <el-tab-pane label="年" name="年">
+            <div class="report-3" id="3" ref="report3"></div>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -287,11 +327,19 @@ const activeDate = ref('周')
         }
       }
     }
+
     .el-tabs {
       .el-tab-pane {
         width: 100%;
-        height: 100%;
+        height: 600px;
         .report-1 {
+          height: 100%;
+        }
+        .report-2 {
+          height: 100%;
+          width: 100%;
+        }
+        .report-3 {
           height: 100%;
           width: 100%;
         }
