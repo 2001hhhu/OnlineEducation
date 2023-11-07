@@ -132,10 +132,12 @@ const handleQuit = () => {
 }
 .header-menu {
   background-color: #fff;
+  border-bottom: 1px solid;
   .el-menu-demo {
     max-width: 1200px;
     padding-right: 20px;
     margin: 0 auto;
+
     //给导航的选项之间加间距
     .el-menu-item {
       margin: 0 10px;
