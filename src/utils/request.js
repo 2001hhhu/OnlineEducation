@@ -27,8 +27,9 @@ instance.interceptors.response.use(
   (res) => {
     // if (res.status >= 100 && res.status < 400) return res
     if (res.data.length === 0) {
-      ElMessage.error('账号不存在')
-      return Promise.reject(res.data)
+      // ElMessage.error(res.data)
+      // return Promise.reject(res.data)
+      return res
     }
     return res
   },
