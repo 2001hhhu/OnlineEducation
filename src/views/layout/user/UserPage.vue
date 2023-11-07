@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useUserStore } from '@/stores/modules/user.js'
+import { useRouter } from 'vue-router'
 
 //获取用户信息
 const userinfo = ref({})
@@ -16,17 +17,22 @@ const personal_input = ref('')
 
 //处理个人主页的菜单栏
 const activeIndex = ref('/user/profile')
+// 刷新页面获取当前菜单栏的活跃菜单
+const router = useRouter()
+onMounted(() => {
+  activeIndex.value = router.currentRoute.value.path
+})
 </script>
 
 <template>
   <div class="wrapper">
-    <div class="user_header">
-      <div class="header_head"></div>
-      <div class="header_foot">
-        <div class="user_avatar">
+    <div class="user-header">
+      <div class="header-head"></div>
+      <div class="header-foot">
+        <div class="user-avatar">
           <el-avatar :size="50" :src="userinfo.url || circleUrl" />
         </div>
-        <div class="user_info">
+        <div class="user-info">
           <h4>{{ userinfo.username }}</h4>
           <el-input v-model="personal_input" placeholder="个性签名" size="small" />
         </div>
@@ -56,23 +62,23 @@ const activeIndex = ref('/user/profile')
 </template>
 
 <style lang="scss" scoped>
-.user_header {
+.user-header {
   // background: url('/images/user/STU-photo-1.jpg') no-repeat center;
   // background-size: cover;
 
   min-height: 192px;
   border-bottom: 1px solid black;
   background-color: #fff;
-  .header_head {
+  .header-head {
     height: 122px;
   }
-  .header_foot {
+  .header-foot {
     display: flex;
     margin-left: 20px;
-    .user_avatar {
+    .user-avatar {
       margin-right: 10px;
     }
-    .user_info {
+    .user-info {
       h4 {
         margin: 0;
       }

@@ -1,14 +1,18 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/stores/modules/user.js'
 import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
 
 //使用pinia里user登录后的token
 const userStore = useUserStore()
 
 // 处理顶部菜单
 const activeIndex = ref('/home')
-//
+const router = useRouter()
+onMounted(() => {
+  activeIndex.value = router.currentRoute.value.path
+})
 
 //控制登录对话框
 const dialogTableVisible = ref(false)
@@ -59,7 +63,7 @@ const handleQuit = () => {
               item: 选中菜单项, routeResult: vue-router 的返回值
        router 是否启用 vue-router 模式。
   -->
-  <div class="header_menu">
+  <div class="header-menu">
     <el-menu
       :default-active="activeIndex"
       class="el-menu-demo"
@@ -88,17 +92,17 @@ const handleQuit = () => {
         </el-input>
       </el-menu-item>
 
-      <div class="login_button" v-if="!isLogin">
+      <div class="login-button" v-if="!isLogin">
         <el-button @click="handleLogin" size="small" type="primary">登录</el-button>
       </div>
-      <div class="header_user" v-else>
+      <div class="header-user" v-else>
         <el-dropdown>
           <!-- <el-link :underline="false" href="#">
           <el-avatar class="header_user_avatar" :size="30" :src="circleUrl" />
           <span>个人中心</span>
         </el-link> -->
           <router-link class="user" to="/user">
-            <el-avatar class="header_user_avatar" :size="30" :src="circleUrl" />
+            <el-avatar class="header-user-avatar" :size="30" :src="circleUrl" />
             <span>个人中心</span>
             <el-icon class="el-icon--right">
               <i-ep-arrow-down />
@@ -115,7 +119,7 @@ const handleQuit = () => {
     </el-menu>
   </div>
 
-  <el-dialog v-model="dialogTableVisible" class="login_dialog">
+  <el-dialog v-model="dialogTableVisible" class="login-dialog">
     <LoginWindow @updateisLogin="updateisLogin"></LoginWindow>
   </el-dialog>
   <router-view></router-view>
@@ -126,7 +130,7 @@ const handleQuit = () => {
 .flex-grow {
   flex-grow: 1;
 }
-.header_menu {
+.header-menu {
   background-color: #fff;
   .el-menu-demo {
     max-width: 1200px;
@@ -136,23 +140,23 @@ const handleQuit = () => {
     .el-menu-item {
       margin: 0 10px;
     }
-    .header_user {
+    .header-user {
       .user {
         display: flex;
         align-items: center;
         line-height: 59px;
       }
-      .header_user_avatar {
+      .header-user-avatar {
         margin-right: 5px;
       }
     }
 
-    .login_button {
+    .login-button {
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .login_dialog {
+    .login-dialog {
       display: flex;
       justify-content: center;
       flex-direction: column;
