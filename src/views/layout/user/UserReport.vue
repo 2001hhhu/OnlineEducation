@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import * as echarts from 'echarts'
 import { useUserStore } from '@/stores/modules/user.js'
 import { useReportStore } from '@/stores/modules/report.js'
@@ -15,10 +15,11 @@ const reportModule = useReportStore()
 reportModule.getLearnModule(1)
 
 // 导入用户学习进度环形图
-let course1 = ref()
-const init2 = () => {
-  const chart = echarts.init(document.querySelector('.course_report'))
-  // const chart = echarts.init(course1.value)
+let course = ref([])
+
+const init2 = (ref) => {
+  // const chart = echarts.init(document.querySelector('.course_report'))
+  const chart = echarts.init(ref)
   window.addEventListener(
     'resize',
     () => {
@@ -69,12 +70,17 @@ const init2 = () => {
   }
   chart.setOption(option)
 }
+// 完成v-for li中的echarts渲染
+const chartList = () => {
+  nextTick(() => {
+    course.value.forEach((item) => {
+      init2(item)
+    })
+  })
+}
 // 导入Echarts图像
 const userStore = useUserStore()
 userStore.getUser()
-const report1 = ref()
-const report2 = ref()
-const report3 = ref()
 const init = (title, data, xdata, ref) => {
   const chart1 = echarts.init(document.querySelector(ref))
 
@@ -131,8 +137,10 @@ const yearX = [
   '十二月'
 ]
 onMounted(() => {
-  init2()
-  // init2()
+  nextTick(() => {
+    chartList()
+  })
+  console.log(course)
   // nextTick(() => {
   //   init('每日学习时长', weekData, dayX, '.report-1')
   //   init('每日学习时长', monthData, weekX, '.report-2')
@@ -214,7 +222,7 @@ const activeDate = ref('周')
                 <span>{{ item.course }}</span>
                 <span>完成：{{ item.completion }} </span>
                 <span>未完成：{{ item.incomplete }}</span>
-                <div class="course_report" ref="course1"></div>
+                <div class="course_report" ref="course"></div>
               </div>
             </li>
           </ul>
@@ -248,13 +256,13 @@ const activeDate = ref('周')
 
         <el-tabs v-model="activeDate" @click="handleClick">
           <el-tab-pane label="周" name="周">
-            <div class="report-1" id="1" ref="report1"></div>
+            <div class="report-1"></div>
           </el-tab-pane>
           <el-tab-pane label="月" name="月">
-            <div class="report-2" id="2" ref="report2"></div>
+            <div class="report-2"></div>
           </el-tab-pane>
           <el-tab-pane label="年" name="年">
-            <div class="report-3" id="3" ref="report3"></div>
+            <div class="report-3"></div>
           </el-tab-pane>
         </el-tabs>
       </div>
