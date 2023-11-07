@@ -26,33 +26,40 @@ onMounted(() => {
       <span>学习时长</span>
     </div>
   </div>
-  <div class="course-menu">
-    <el-menu
-      v-model="activeIndex"
-      :default-active="activeIndex"
-      class="el-menu-vertical-demo"
-      router="true"
-    >
-      <el-menu-item index="/course/detail">
-        <el-icon><i-ep-Bell /></el-icon>
-        <span>课程介绍</span>
-      </el-menu-item>
-      <el-menu-item index="/course/learn">
-        <el-icon><i-ep-VideoPlay /></el-icon>
-        <span>课程学习</span>
-      </el-menu-item>
-      <el-menu-item index="/course/discuss">
-        <el-icon><i-ep-ChatLineSquare /></el-icon>
-        <span>课程讨论</span>
-      </el-menu-item>
-      <el-menu-item index="/course/evaluate">
-        <el-icon><i-ep-ChatDotRound /></el-icon>
-        <span>课程评价</span>
-      </el-menu-item>
-    </el-menu>
+  <div class="course-body">
+    <el-row class="login-page">
+      <el-col :span="4" class="bg">
+        <div class="course-menu">
+          <el-menu
+            v-model="activeIndex"
+            :default-active="activeIndex"
+            class="el-menu-vertical-demo"
+            router="true"
+          >
+            <el-menu-item index="/course/detail">
+              <el-icon><i-ep-Bell /></el-icon>
+              <span>课程介绍</span>
+            </el-menu-item>
+            <el-menu-item index="/course/learn">
+              <el-icon><i-ep-VideoPlay /></el-icon>
+              <span>课程学习</span>
+            </el-menu-item>
+            <el-menu-item index="/course/discuss">
+              <el-icon><i-ep-ChatLineSquare /></el-icon>
+              <span>课程讨论</span>
+            </el-menu-item>
+            <el-menu-item index="/course/evaluate">
+              <el-icon><i-ep-ChatDotRound /></el-icon>
+              <span>课程评价</span>
+            </el-menu-item>
+          </el-menu>
+        </div>
+      </el-col>
+      <el-col :span="18" class="form">
+        <router-view></router-view>
+      </el-col>
+    </el-row>
   </div>
-
-  <router-view></router-view>
 </template>
 
 <style lang="scss" scoped>
@@ -85,18 +92,25 @@ onMounted(() => {
     }
   }
 }
-.course-menu {
-  max-width: 250px;
-  border-radius: 8px;
-  margin: 20px;
+.course-body {
+  width: 100%;
+  overflow: hidden;
   margin-top: 30px;
-  .el-menu {
+  .course-menu {
+    // float: left;
+    max-width: 250px;
+    min-width: 200px;
     border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    .el-menu-item.is-active {
+    margin: 20px;
+
+    .el-menu {
       border-radius: 8px;
-      background-color: rgb(156, 225, 247) !important;
+      font-size: 16px;
+      font-weight: bold;
+      .el-menu-item.is-active {
+        border-radius: 8px;
+        background-color: rgb(156, 225, 247) !important;
+      }
     }
   }
 }
