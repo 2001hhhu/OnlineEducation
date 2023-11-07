@@ -17,13 +17,27 @@ const terms = [
   '2021-2022学年 第二学期',
   '2021-2022学年 第一学期'
 ]
+// const handleTerm = (val) => {
+//   courseList.value = []
+//   if (val === '全部') {
+//     courseList.value = courseListTemp.value
+//   } else {
+//     courseListTemp.value.forEach((item) => {
+//       if (item.term === val) {
+//         courseList.value.push(item)
+//       }
+//     })
+//   }
+
+//   console.log(courseList.value)
+// }
 
 //处理课课程分类多选框
-const checkboxGroup2 = ref(['全部'])
+const checkboxGroup2 = ref('全部')
 const categories = ref([])
 const getCategory = async () => {
   const res = await courseCategoryService()
-  categories.value = res.data.name
+  categories.value = res.data.category
 }
 getCategory()
 
@@ -31,13 +45,22 @@ getCategory()
 const radioGroup2 = ref('全部')
 const status = ['全部', '即将开课', '开课中', '已结课']
 
+//处理分类事件
+// @change="handleCategory(radioGroup1, checkboxGroup2, radioGroup2)"
 //处理课程信息
 const courseList = ref([])
 const getCourseList = async () => {
-  const res = await courseListService()
+  const res = await courseListService('全部', '全部', '全部')
   courseList.value = res.data
 }
 getCourseList()
+const isEmpty = ref(false)
+const handleCategory = async (term, category, state) => {
+  const res = await courseListService(term, category, state)
+  courseList.value = res.data
+  if (courseList.value.length === 0) isEmpty.value = true
+  else isEmpty.value = false
+}
 </script>
 
 <template>
@@ -47,7 +70,11 @@ getCourseList()
       <div class="category">
         <div class="term">
           <span>课程学期：</span>
-          <el-radio-group v-model="radioGroup1" size="large">
+          <el-radio-group
+            v-model="radioGroup1"
+            size="large"
+            @change="handleCategory(radioGroup1, checkboxGroup2, radioGroup2)"
+          >
             <el-radio-button v-for="term in terms" :key="term" :label="term">
               {{ term }}
             </el-radio-button>
@@ -55,20 +82,27 @@ getCourseList()
         </div>
         <div class="classification">
           <span>课程分类：</span>
-          <el-checkbox-group v-model="checkboxGroup2" size="large">
-            <el-checkbox-button
-              border="false"
+          <el-radio-group
+            v-model="checkboxGroup2"
+            size="large"
+            @change="handleCategory(radioGroup1, checkboxGroup2, radioGroup2)"
+          >
+            <el-radio-button
               v-for="category in categories"
               :key="category"
               :label="category"
             >
               {{ category }}
-            </el-checkbox-button>
-          </el-checkbox-group>
+            </el-radio-button>
+          </el-radio-group>
         </div>
         <div class="status">
           <span>开课状态：</span>
-          <el-radio-group v-model="radioGroup2" size="large">
+          <el-radio-group
+            v-model="radioGroup2"
+            size="large"
+            @change="handleCategory(radioGroup1, checkboxGroup2, radioGroup2)"
+          >
             <el-radio-button v-for="state in status" :key="state" :label="state">
               {{ state }}
             </el-radio-button>
@@ -78,7 +112,7 @@ getCourseList()
     </div>
     <span class="title">课程</span>
     <div class="body">
-      <ul>
+      <ul v-if="!isEmpty">
         <li v-for="item in courseList" :key="item.id">
           <div class="course">
             <el-image :src="getImageUrl(item.url)" fit="fit"></el-image>
@@ -95,6 +129,7 @@ getCourseList()
           </div>
         </li>
       </ul>
+      <div class="empty" v-else>没有相关内容</div>
     </div>
   </div>
 </template>
@@ -178,6 +213,12 @@ span {
         font-size: 14px;
       }
     }
+  }
+  .empty {
+    height: 100px;
+    font-size: 20px;
+    line-height: 100px;
+    background-color: #fff;
   }
 }
 </style>
