@@ -1,12 +1,21 @@
 <script setup>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { useCourseStore } from '../../../store'
 
 //处理折叠面板
 const activeNames = ref([''])
+
+// 获取课程信息并渲染到页面
+const route = useRoute()
+const courseId = route.query.id
+const courseStore = useCourseStore()
+courseStore.getCourseInfo(courseId)
+const courseInfo = ref({})
+courseInfo.value = courseStore.courseInfo
 </script>
 
 <template>
-  <div>我是课程学习页</div>
   <div class="learn">
     <div class="learn-head">
       <h3>总课程</h3>

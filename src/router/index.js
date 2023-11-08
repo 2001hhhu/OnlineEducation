@@ -22,7 +22,7 @@ const router = createRouter({
           component: () => import('@/views/layout/OrderPage.vue')
         },
         {
-          path: '/course',
+          path: '/course/{id}',
           component: () => import('@/views/layout/course/CoursePage.vue'),
           redirect: '/course/detail',
           children: [
@@ -41,6 +41,10 @@ const router = createRouter({
             {
               path: '/course/discuss',
               component: () => import('@/views/layout/course/CourseDiscuss.vue')
+            },
+            {
+              path: '/course/content',
+              component: () => import('@/views/layout/course/CourseContent.vue')
             }
           ]
         },

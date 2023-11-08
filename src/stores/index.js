@@ -7,3 +7,5 @@ pinia.use(persist)
 export default pinia
 
 export * from './modules/user.js'
+export * from './modules/course.js'
+export * from './modules/report.js'

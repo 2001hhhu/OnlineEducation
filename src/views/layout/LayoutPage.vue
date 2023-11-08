@@ -123,7 +123,9 @@ const handleQuit = () => {
     <LoginWindow @updateisLogin="updateisLogin"></LoginWindow>
   </el-dialog>
   <router-view></router-view>
-  <LayoutFooter></LayoutFooter>
+  <div class="footer">
+    <LayoutFooter></LayoutFooter>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -164,5 +166,7 @@ const handleQuit = () => {
       flex-direction: column;
     }
   }
+}
+.footer {
 }
 </style>

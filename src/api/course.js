@@ -5,6 +5,10 @@ export const courseCategoryService = () => {
   return request.get('/coursecategory')
 }
 
+export const courseAllListService = () => {
+  return request.get('/courselist')
+}
+
 export const courseListService = (term, category, state) => {
   // /user?username=admin&password=123456
   if (term === '全部' && category === '全部' && state === '全部') {
@@ -24,4 +28,12 @@ export const courseListService = (term, category, state) => {
   } else {
     return request.get(`/courselist?term=${term}&category=${category}&state=${state}`)
   }
+}
+
+export const courseService = (courseId) => {
+  return request.get(`/courselist?id=${courseId}`)
+}
+
+export const evaluateService = (userId, courseId) => {
+  return request.get(`/evaluate?course=${courseId}&user=${userId}`)
 }

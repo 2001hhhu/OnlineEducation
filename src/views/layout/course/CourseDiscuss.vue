@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { useCourseStore } from '../../../store'
 
 // 处理搜索框
 const input = ref('')
@@ -9,10 +11,17 @@ const handleSearch = () => {
 
 // 处理主题单选框
 const themeRadio = ref('')
+
+// 获取课程信息并渲染到页面
+const route = useRoute()
+const courseId = route.query.id
+const courseStore = useCourseStore()
+courseStore.getCourseInfo(courseId)
+const courseInfo = ref({})
+courseInfo.value = courseStore.courseInfo
 </script>
 
 <template>
-  <div>我是课程讨论</div>
   <div class="discussion-area">
     <div class="area-head">
       <div class="head-context">
@@ -87,7 +96,7 @@ const themeRadio = ref('')
     }
   }
   .area-middle {
-    margin-bottom: 30px;
+    margin-bottom: 80px;
     border-bottom: 1px solid rgb(238, 238, 238);
     p {
       font-size: 12px;

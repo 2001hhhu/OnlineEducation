@@ -111,6 +111,45 @@
       "term": "2022-2023学年 第一学期",
       "category": "工科",
       "state": "已结课"
+    },
+    {
+      "id": 8,
+      "url": "/images/course/course-photo-4.jpg",
+      "name": "道德文化修养",
+      "lecturer": "黄老师",
+      "participants": 77,
+      "hour": 64,
+      "credit": 4,
+      "video": 7,
+      "term": "2022-2023学年 第一学期",
+      "category": "历史与政治",
+      "state": "开课中"
+    },
+    {
+      "id": 9,
+      "url": "/images/course/course-photo-5.jpg",
+      "name": "大自然",
+      "lecturer": "冯老师",
+      "participants": 77,
+      "hour": 64,
+      "credit": 4,
+      "video": 7,
+      "term": "2022-2023学年 第一学期",
+      "category": "音乐与艺术",
+      "state": "开课中"
+    },
+    {
+      "id": 10,
+      "url": "/images/course/course-photo-6.jpg",
+      "name": "ELC4",
+      "lecturer": "张老师",
+      "participants": 77,
+      "hour": 64,
+      "credit": 4,
+      "video": 7,
+      "term": "2022-2023学年 第一学期",
+      "category": "外语",
+      "state": "即将开课"
     }
   ],
   "userinfo": [
@@ -222,5 +261,15 @@
         "procurement": [11,20,30,22,24,23,30],
         "sales": [200,3000,520,244,23,56,24]
       }
-    ]
+    ],
+    "evaluate": 
+      {
+        "id": 1,
+        "course": 1,
+        "user": 1,
+        "general": 2.1,
+        "comment": "还行吧，老师讲的不错",
+        "date": "2019-8-19"
+      }
+    
 }

@@ -1,12 +1,21 @@
 <script setup>
 import image1 from '@/assets/home_carousel.jpg'
 import { ref } from 'vue'
-// import image2 from '@/assets/photo_1.jpg'
+import { courseAllListService } from '@/api/course.js'
+import { useUserStore } from '../../stores'
 
 //引入本地图片
 function getImageUrl(url) {
   return new URL(url, import.meta.url).href
 }
+
+// 通过token判断是否登录
+const isLogin = ref(false)
+const userStore = useUserStore()
+if (userStore.token) {
+  isLogin.value = true
+}
+
 //处理头像图片
 const circleUrl = ref(
   'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
@@ -21,6 +30,15 @@ const dialogTableVisible = ref(false)
 const handleLogin = () => {
   dialogTableVisible.value = true
 }
+
+// 获取课程列表
+const courseList = ref([])
+const getCourseList = async () => {
+  const res = await courseAllListService()
+  courseList.value = res.data
+  console.log(courseList.value)
+}
+getCourseList()
 </script>
 
 <template>
@@ -78,7 +96,7 @@ const handleLogin = () => {
         <li><a href="#">XX高校</a></li>
       </ul>
     </div>
-    <div class="view-history">
+    <div class="view-history" v-if="isLogin">
       <h2>观看历史</h2>
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane label="1" name="first">
@@ -112,15 +130,12 @@ const handleLogin = () => {
       <h2>推荐</h2>
       <div>
         <ul class="column">
-          <li v-for="item in 10" :key="item">
+          <li v-for="item in courseList" :key="item.id">
             <div class="box">
-              <a href="#"
-                ><el-image
-                  :src="getImageUrl('/images/home/photo_3.jpg')"
-                  fit="fit"
-                ></el-image>
-                <h3>课程名</h3>
-                <p>老师</p></a
+              <router-link :to="`/course/detail?id=${item.id}`"
+                ><el-image :src="getImageUrl(item.url)" fit="fit"></el-image>
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.lecturer }}</p></router-link
               >
             </div>
           </li>

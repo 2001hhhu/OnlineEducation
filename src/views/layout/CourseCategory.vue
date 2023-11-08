@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { courseCategoryService, courseListService } from '@/api/course.js'
+import { useRouter } from 'vue-router'
 
 //引入本地图片
 function getImageUrl(url) {
@@ -32,6 +33,12 @@ const terms = [
 //   console.log(courseList.value)
 // }
 
+// 路由跳转
+const router = useRouter()
+const routerPush = (id) => {
+  router.push({ path: '/course/detail', query: { id: id } })
+}
+
 //处理课课程分类多选框
 const checkboxGroup2 = ref('全部')
 const categories = ref([])
@@ -45,9 +52,9 @@ getCategory()
 const radioGroup2 = ref('全部')
 const status = ['全部', '即将开课', '开课中', '已结课']
 
-//处理分类事件
+// 处理分类事件
 // @change="handleCategory(radioGroup1, checkboxGroup2, radioGroup2)"
-//处理课程信息
+// 处理课程信息
 const courseList = ref([])
 const getCourseList = async () => {
   const res = await courseListService('全部', '全部', '全部')
@@ -113,7 +120,7 @@ const handleCategory = async (term, category, state) => {
     <span class="title">课程</span>
     <div class="body">
       <ul v-if="!isEmpty">
-        <li v-for="item in courseList" :key="item.id">
+        <li v-for="item in courseList" :key="item.id" @click="routerPush(item.id)">
           <div class="course">
             <el-image :src="getImageUrl(item.url)" fit="fit"></el-image>
           </div>

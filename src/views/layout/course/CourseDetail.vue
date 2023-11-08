@@ -1,7 +1,18 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { useCourseStore } from '../../../store'
+
+// 获取课程信息并渲染到页面
+const route = useRoute()
+const courseId = route.query.id
+const courseStore = useCourseStore()
+courseStore.getCourseInfo(courseId)
+const courseInfo = ref({})
+courseInfo.value = courseStore.courseInfo
+</script>
 
 <template>
-  <div>我是课程详细页</div>
   <div class="detail-body">
     <div class="detail_title"><span>课程介绍</span></div>
     <el-card class="box-card" shadow="never">
