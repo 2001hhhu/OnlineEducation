@@ -29,7 +29,43 @@
       "participants": 20,
       "hour": 32,
       "credit": 2,
-      "video": 7,
+      "chapter": [
+        {
+          "id": 1,
+          "name": "概述",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 2,
+          "name": "物理层",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 3,
+          "name": "数据链路层",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 4,
+          "name": "网络层",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 5,
+          "name": "运输层",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 6,
+          "name": "应用层",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 7,
+          "name": "网络安全",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        }
+      ],
       "term": "2021-2022学年 第一学期",
       "category": "工科",
       "state": "开课中"
@@ -42,7 +78,48 @@
       "participants": 65,
       "hour": 48,
       "credit": 4,
-      "video": 7,
+      "chapter": [
+        {
+          "id": 1,
+          "name": "概述",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 2,
+          "name": "线性表",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 3,
+          "name": "栈和队列",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 4,
+          "name": "串",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 5,
+          "name": "树与二叉树",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 6,
+          "name": "图",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 7,
+          "name": "查找",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 8,
+          "name": "排序",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        }
+      ],
       "term": "2021-2022学年 第一学期",
       "category": "工科",
       "state": "开课中"
@@ -55,7 +132,48 @@
       "participants": 89,
       "hour": 64,
       "credit": 4,
-      "video": 7,
+      "chapter": [
+        {
+          "id": 1,
+          "name": "概述",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 2,
+          "name": "函数与极限",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 3,
+          "name": "导数与微分",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 4,
+          "name": "微分中值定理与导数的应用",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 5,
+          "name": "不定积分",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 6,
+          "name": "定积分",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 7,
+          "name": "定积分的应用",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 8,
+          "name": "微分方程序",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        }
+      ],
       "term": "2021-2022学年 第一学期",
       "category": "工科",
       "state": "开课中"
@@ -63,12 +181,58 @@
     {
       "id": 4,
       "url": "/images/course/course-photo-3.jpg",
-      "name": "高等物理",
+      "name": "大学物理",
       "lecturer": "陈老师",
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7,
+      "chapter": [
+        {
+          "id": 1,
+          "name": "质点运动学",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 2,
+          "name": "质点动力学",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 3,
+          "name": "刚体的定轴运动",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 4,
+          "name": "气体动理论",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 5,
+          "name": "热力学基础",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 6,
+          "name": "静电场",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 7,
+          "name": "稳恒磁场",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 8,
+          "name": "电磁感应",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 9,
+          "name": "振动学基础",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        }
+      ],
       "term": "2021-2022学年 第一学期",
       "category": "工科",
       "state": "即将开课"
@@ -81,7 +245,48 @@
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7,
+      "chapter": [
+        {
+          "id": 1,
+          "name": "绪论",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 2,
+          "name": "知识表示方法",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 3,
+          "name": "搜索推理技术",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 4,
+          "name": "计算智能",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 5,
+          "name": "专家系统",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 6,
+          "name": "机器学习",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 7,
+          "name": "智能规划",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 8,
+          "name": "自然语言理解",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        }
+      ],
       "term": "2021-2022学年 第二学期",
       "category": "工科",
       "state": "开课中"
@@ -94,7 +299,58 @@
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7,
+      "chapter": [
+        {
+          "id": 1,
+          "name": "初识C语言",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 2,
+          "name": "C语言概述",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 3,
+          "name": "数据和C",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 4,
+          "name": "字符串和格式化输入",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 5,
+          "name": "运算符、表达式和语句",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 6,
+          "name": "C控制语句: 循环",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 7,
+          "name": "C控制语句: 分支和跳转",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 8,
+          "name": "字符输入/输出和输入验证",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 9,
+          "name": "函数",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 10,
+          "name": "数组和指针",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        }
+      ],
       "term": "2021-2022学年 第二学期",
       "category": "工科",
       "state": "开课中"
@@ -107,7 +363,58 @@
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7,
+      "chapter": [
+        {
+          "id": 1,
+          "name": "Java入门",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 2,
+          "name": "基本数据类型、数组和枚举",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 3,
+          "name": "运算符、表达式和语句",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 4,
+          "name": "类与对象",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 5,
+          "name": "继承与接口",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 6,
+          "name": "内部类、匿名类与Lambda表达式、异常类",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 7,
+          "name": "面向对象设计的基本原则",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 8,
+          "name": "设计模式",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 9,
+          "name": "常用实用类",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 10,
+          "name": "Java Swing",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        }
+      ],
       "term": "2022-2023学年 第一学期",
       "category": "工科",
       "state": "已结课"
@@ -120,7 +427,53 @@
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7,
+      "chapter": [
+        {
+          "id": 1,
+          "name": "绪论",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 2,
+          "name": "领悟人生真谛 把握人生方向",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 3,
+          "name": "追求远大理想 坚定崇高信念",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 4,
+          "name": "继承优良传统 弘扬中国精神",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 5,
+          "name": "明确价值要求 践行价值准则",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 6,
+          "name": "遵守道德规范 锤炼道德品格（一）",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 7,
+          "name": "遵守道德规范 锤炼道德品格（二）",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 8,
+          "name": "学习法治思想 提升法治素养（一）",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 9,
+          "name": "学习法治思想 提升法治素养（二）",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        }
+      ],
       "term": "2022-2023学年 第一学期",
       "category": "历史与政治",
       "state": "开课中"
@@ -133,7 +486,48 @@
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7,
+      "chapter": [
+        {
+          "id": 1,
+          "name": "自然保护的发展与生态危机",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 2,
+          "name": "自然保护的基础理论",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 3,
+          "name": "森林与湿地生态保护",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 4,
+          "name": "草原与荒漠生态保护",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 5,
+          "name": "水生生态保护",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 6,
+          "name": "自然资源保护",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 7,
+          "name": "生物多样性保护",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 8,
+          "name": "自然保护区",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        }
+      ],
       "term": "2022-2023学年 第一学期",
       "category": "音乐与艺术",
       "state": "开课中"
@@ -146,7 +540,43 @@
       "participants": 77,
       "hour": 64,
       "credit": 4,
-      "video": 7,
+      "chapter": [
+        {
+          "id": 1,
+          "name": "Session 1",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 2,
+          "name": "Session 2",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 3,
+          "name": "Session 3",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 4,
+          "name": "Session 4",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 5,
+          "name": "Session 5",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 6,
+          "name": "Session 6",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        },
+        {
+          "id": 7,
+          "name": "Session 7",
+          "video": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+        }
+      ],
       "term": "2022-2023学年 第一学期",
       "category": "外语",
       "state": "即将开课"
