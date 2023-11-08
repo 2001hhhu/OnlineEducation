@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { getImageUrl } from '@/utils/getphoto'
 import { useRouter, useRoute } from 'vue-router'
-import { useCourseStore } from '../../../stores'
+import { useCourseStore } from '@/stores'
 
 // 处理菜单的菜单栏选中
 const route = useRoute()

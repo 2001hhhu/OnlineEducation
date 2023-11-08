@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useCourseStore } from '../../../store'
+import { useCourseStore } from '@/stores'
 
 // 处理搜索框
 const input = ref('')

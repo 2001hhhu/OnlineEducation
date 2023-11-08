@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useCourseStore } from '../../../store'
+import { useCourseStore } from '@/stores'
 
 // 获取课程信息并渲染到页面
 const route = useRoute()

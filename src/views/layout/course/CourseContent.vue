@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useCourseStore } from '../../../store'
+import { useCourseStore } from '@/stores'
 
 // 判断是文档还是视频
 const isVideo = ref(true)

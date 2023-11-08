@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useCourseStore } from '../../../store'
+import { useCourseStore } from '@/stores'
 
 //处理折叠面板
 const activeNames = ref([''])
