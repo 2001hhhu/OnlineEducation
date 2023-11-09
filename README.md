@@ -12,23 +12,63 @@
 
 ![demo_home](.\demo\demo_home.png)
 
+主页包含顶部的菜单，可以跳转到其它页面、进行课程搜索或者进行登录，只有登录后才能进入个人中心和看到观看历史。主页的下面有一些推荐课程和一些课程的排行榜，点击课程可跳转到课程详细页。
+
 课程分类页
 
 ![demo_category](.\demo\demo_category.png)
+
+![demo_category_2](.\demo\demo_category_2.png)
+
+课程分类页可通过点击上面的筛选按钮对下面的课程进行筛选找到自己想要的页面。
 
 个人主页
 
 ![demo_user_profile](.\demo\demo_user_profile.png)
 
+![demo_user_profile_2](.\demo\demo_user_profile_2.png)
+
+个人主页可以看到个人详细信息，点击编辑按钮可以编辑个人信息。
+
 用户报表
 
 ![demo_user_report](.\demo\demo_user_report.png)
 
+用户报表页可以看到用户的课程学习情况和他的每日学习时长，以图表形式展示。
+
+课程介绍
+
+![demo_course_introduce](.\demo\demo_course_introduce.png)
+
+课程介绍可以看到课程的一些介绍和公告。
+
+课程学习
+
+![demo_course_learn](.\demo\demo_course_learn.png)
+
+课程学习页点击对应的章节面板可以看到对应的视频和文档。
+
+课程讨论
+
+![demo_course_discussion](.\demo\demo_course_discussion.png)
+
+课程评价
+
+![demo_course_evaluate](C:\Users\Mare\Desktop\vue\online_education_platform\demo\demo_course_evaluate.png)
+
+课程评价可以对当前课程进行评价。
+
+课程视频
+
+![demo_course_video](C:\Users\Mare\Desktop\vue\online_education_platform\demo\demo_course_video.png)
+
+课程视频页可以观看相关视频。
+
 # 3、技术栈
 
-Vue3+Element-plus+Pinia+Vue router+websocket+ECharts+Vite
+Vue3+Element-plus+Pinia+Vue router+video.js+websocket+ECharts+Vite
 
-暂用JSON-server模拟后端数据
+暂用json-server模拟后端返回数据
 
 ## 4、构建
 
