@@ -39,7 +39,9 @@ const updateisLogin = (e) => {
 //处理搜索事件
 const input = ref('')
 const handleSearch = () => {
-  console.log(input)
+  if (input.value) {
+    router.push({ path: '/search', query: { input: input.value } })
+  }
 }
 
 //处理登出
@@ -63,69 +65,66 @@ const handleQuit = () => {
               item: 选中菜单项, routeResult: vue-router 的返回值
        router 是否启用 vue-router 模式。
   -->
-  <div class="header-menu">
-    <el-menu
-      :default-active="activeIndex"
-      class="el-menu-demo"
-      mode="horizontal"
-      :ellipsis="false"
-      router="true"
-      @select="handleSelect"
-    >
-      <el-menu-item index="/login">
-        <img style="width: 100px" src="@/assets/logo.drawio.svg" alt="logo" />
-      </el-menu-item>
-      <div class="flex-grow" />
-      <el-menu-item index="/home">首页</el-menu-item>
-      <el-menu-item index="/category">课程</el-menu-item>
-      <el-menu-item index="">
-        <el-input
-          v-model="input"
-          placeholder="搜索课程或老师姓名"
-          @keyup.enter="handleSearch"
-          clearable
-          suffix-icon
-        >
-          <template #append>
-            <i-ep-search @click="handleSearch"></i-ep-search>
-          </template>
-        </el-input>
-      </el-menu-item>
+  <div class="container">
+    <div class="header-menu">
+      <el-menu
+        :default-active="activeIndex"
+        class="el-menu-demo"
+        mode="horizontal"
+        :ellipsis="false"
+        router="true"
+        @select="handleSelect"
+      >
+        <el-menu-item index="/login">
+          <img style="width: 100px" src="@/assets/logo.drawio.svg" alt="logo" />
+        </el-menu-item>
+        <div class="flex-grow" />
+        <el-menu-item index="/home">首页</el-menu-item>
+        <el-menu-item index="/category">课程</el-menu-item>
+        <el-menu-item index="">
+          <el-input
+            v-model="input"
+            placeholder="搜索课程或老师姓名"
+            @keyup.enter="handleSearch"
+            clearable
+            suffix-icon
+          >
+            <template #append>
+              <i-ep-search @click="handleSearch"></i-ep-search>
+            </template>
+          </el-input>
+        </el-menu-item>
 
-      <div class="login-button" v-if="!isLogin">
-        <el-button @click="handleLogin" size="small" type="primary">登录</el-button>
-      </div>
-      <div class="header-user" v-else>
-        <el-dropdown>
-          <!-- <el-link :underline="false" href="#">
-          <el-avatar class="header_user_avatar" :size="30" :src="circleUrl" />
-          <span>个人中心</span>
-        </el-link> -->
-          <router-link class="user" to="/user">
-            <el-avatar class="header-user-avatar" :size="30" :src="circleUrl" />
-            <span>个人中心</span>
-            <el-icon class="el-icon--right">
-              <i-ep-arrow-down />
-            </el-icon>
-          </router-link>
+        <div class="login-button" v-if="!isLogin">
+          <el-button @click="handleLogin" size="small" type="primary">登录</el-button>
+        </div>
+        <div class="header-user" v-else>
+          <el-dropdown>
+            <router-link class="user" to="/user">
+              <el-avatar class="header-user-avatar" :size="30" :src="circleUrl" />
+              <span>个人中心</span>
+              <el-icon class="el-icon--right">
+                <i-ep-arrow-down />
+              </el-icon>
+            </router-link>
 
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item @click="handleQuit">退出</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
-    </el-menu>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item @click="handleQuit">退出</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+      </el-menu>
+    </div>
+    <router-view></router-view>
   </div>
-
-  <el-dialog v-model="dialogTableVisible" class="login-dialog">
-    <LoginWindow @updateisLogin="updateisLogin"></LoginWindow>
-  </el-dialog>
-  <router-view></router-view>
   <div class="footer">
     <LayoutFooter></LayoutFooter>
   </div>
+  <el-dialog v-model="dialogTableVisible" class="login-dialog">
+    <LoginWindow @updateisLogin="updateisLogin"></LoginWindow>
+  </el-dialog>
 </template>
 
 <style lang="scss" scoped>
@@ -160,13 +159,21 @@ const handleQuit = () => {
       align-items: center;
       justify-content: center;
     }
-    .login-dialog {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-    }
   }
 }
+.login-dialog {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .footer {
+  // position: absolute;
+  // right: 0;
+  // bottom: 0;
+  // left: 0;
+}
+.container {
+  min-height: 70vh;
+  overflow: hidden;
 }
 </style>

@@ -234,10 +234,14 @@ const handleCommmit = async () => {
       <el-form :model="userForm" :rules="rules" hide-required-asterisk="true">
         <div class="dialog-body">
           <div class="dialog-left">
-            <el-form-item label="头像" prop>
-              <el-image v-if="userinfo.url"></el-image>
-              <el-image :src="squareUrl" v-else></el-image>
-              <el-button type="primary" size="small" radius>更换头像</el-button>
+            <el-form-item class="avatar" label="头像" prop>
+              <div>
+                <el-image v-if="userinfo.url"></el-image>
+                <el-image :src="squareUrl" v-else></el-image>
+              </div>
+              <div>
+                <el-button type="primary" size="small" radius>更换头像</el-button>
+              </div>
             </el-form-item>
             <el-form-item label="密码" prop="password">
               <el-input type="password" v-model="userForm.password" show-password />
@@ -317,6 +321,11 @@ const handleCommmit = async () => {
     .dialog-left {
       flex: 1;
       margin-right: 20px;
+      .avatar {
+        .el-button {
+          margin-left: 20px;
+        }
+      }
       .el-form-item {
         .el-image {
           display: block;

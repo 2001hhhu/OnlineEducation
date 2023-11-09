@@ -1,10 +1,16 @@
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useCourseStore } from '@/stores'
 
 //处理折叠面板
 const activeNames = ref([''])
+
+// 按钮跳转到视频页
+const router = useRouter()
+const handlePush = (id) => {
+  router.push({ path: '/course/content', query: { id } })
+}
 
 // 获取课程信息并渲染到页面
 const route = useRoute()
@@ -18,19 +24,19 @@ courseInfo.value = courseStore.courseInfo
 <template>
   <div class="learn">
     <div class="learn-head">
-      <h3>总课程</h3>
+      <h3>{{ courseInfo.name }} 总课程</h3>
     </div>
     <div class="learn-collapse">
       <el-collapse v-model="activeNames">
-        <el-collapse-item v-for="item in 7" :key="item" :name="item">
+        <el-collapse-item v-for="item in courseInfo.chapter" :key="item.id" :name="item">
           <template #title>
-            <div class="collapse-item">{{ `第${item}章` }}</div>
+            <div class="collapse-item">{{ `第${item.id}章 ${item.name}` }}</div>
           </template>
           <div>
-            <el-button text>第一节</el-button>
+            <el-button text @click="handlePush(courseInfo.id)">第一节</el-button>
           </div>
           <div>
-            <el-button text>第二节</el-button>
+            <el-button text @click="handlePush(courseInfo.id)">第二节</el-button>
           </div>
         </el-collapse-item>
       </el-collapse>

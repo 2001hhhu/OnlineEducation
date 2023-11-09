@@ -1,6 +1,12 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { evaluateService, courseService } from '@/api/course.js'
+import {
+  evaluateService,
+  evaluatePostService,
+  courseService,
+  evaluateDeleteService,
+  evaluateUpdateService
+} from '@/api/course.js'
 
 export const useCourseStore = defineStore(
   'course',
@@ -10,6 +16,21 @@ export const useCourseStore = defineStore(
     const getUserEvaluate = async (userId, courseId) => {
       const res = await evaluateService(userId, courseId)
       userEvaluate.value = res.data
+      // console.log(res)
+    }
+    const putEvaluate = async (obj) => {
+      const res = await evaluatePostService(obj)
+      console.log(res)
+    }
+    const deleteEvaluate = async (userId, courseId) => {
+      const res = await evaluateDeleteService(userId, courseId)
+      console.log(res)
+      userEvaluate.value = ''
+    }
+    const updateEvaluate = async (userId, courseId, obj) => {
+      const res = await evaluateUpdateService(userId, courseId, obj)
+      console.log(res)
+      userEvaluate.value = obj
     }
 
     // 获取单节课的数据
@@ -22,6 +43,9 @@ export const useCourseStore = defineStore(
     return {
       userEvaluate,
       getUserEvaluate,
+      putEvaluate,
+      deleteEvaluate,
+      updateEvaluate,
       courseInfo,
       getCourseInfo
     }

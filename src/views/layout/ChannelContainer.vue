@@ -36,7 +36,6 @@ const courseList = ref([])
 const getCourseList = async () => {
   const res = await courseAllListService()
   courseList.value = res.data
-  console.log(courseList.value)
 }
 getCourseList()
 </script>

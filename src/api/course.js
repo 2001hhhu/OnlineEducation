@@ -34,6 +34,28 @@ export const courseService = (courseId) => {
   return request.get(`/courselist?id=${courseId}`)
 }
 
+export const courseSearchService = async (str) => {
+  const res1 = request.get(`/courselist?name=${str}`)
+  const res2 = request.get(`/courselist?lecturer=${str}`)
+  let res = await res1
+  if (res.data.length === 0) {
+    return res2
+  }
+  return res1
+}
+
 export const evaluateService = (userId, courseId) => {
   return request.get(`/evaluate?course=${courseId}&user=${userId}`)
+}
+
+export const evaluatePostService = (obj) => {
+  return request.post('/evaluate?course', obj)
+}
+
+export const evaluateDeleteService = (userId, courseId) => {
+  return request.delete(`/evaluate?course=${courseId}&user=${userId}`)
+}
+
+export const evaluateUpdateService = (userId, courseId, obj) => {
+  return request.put(`/evaluate?course=${courseId}&user=${userId}`, obj)
 }

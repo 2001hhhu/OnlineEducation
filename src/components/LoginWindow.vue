@@ -60,6 +60,10 @@ const handleLogin = async () => {
   if (emits && res.status >= 200 && res.status < 400) {
     emits('updateisLogin', true)
   }
+  if (res.data.length === 0) {
+    ElMessage.error('账号不存在')
+    return Promise.reject(res.data)
+  }
   userStore.setToken(res.data[0].token)
   ElMessage({
     message: '登陆成功.',

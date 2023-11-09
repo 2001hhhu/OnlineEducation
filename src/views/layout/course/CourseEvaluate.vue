@@ -35,28 +35,65 @@ onBeforeUnmount(() => {
 })
 
 // 获取评价
+const route = useRoute()
+const courseId = route.query.id
 const courseStore = useCourseStore()
 // 判断用户是否进行了评价 有则显示评价 没有则显示提交评价
 const isEvaluate = ref()
 // 存储用户的评价
 const userevaluate = ref({})
 // 存放用户的总评
-const evaluateValue = ref()
-courseStore.getUserEvaluate(userinfo.value.id, 1)
-userevaluate.value = courseStore.userEvaluate
-if (userevaluate.value) {
+const evaluateValue = ref('0')
+courseStore.getUserEvaluate(userinfo.value.id, courseId)
+userevaluate.value = courseStore.userEvaluate[0]
+if (courseStore.userEvaluate.length !== 0) {
   isEvaluate.value = true
+  evaluateValue.value = userevaluate.value.general
 } else {
   isEvaluate.value = false
 }
-evaluateValue.value = userevaluate.value.general
 
 // 获取课程信息并渲染到页面
-const route = useRoute()
-const courseId = route.query.id
 courseStore.getCourseInfo(courseId)
 const courseInfo = ref({})
 courseInfo.value = courseStore.courseInfo
+
+// 处理提交按钮把评价提交给后端
+let getTime = new Date().getTime()
+let time = new Date(getTime)
+const date = ref()
+const nowDate = (time) => {
+  let year = time.getFullYear() // 年
+  let month = (time.getMonth() + 1).toString().padStart(2, '0') // 月
+  let day = time.getDate().toString().padStart(2, '0') // 日
+  return year + '-' + month + '-' + day
+}
+date.value = nowDate(time)
+const handleCommit = () => {
+  let user_evaluate = {
+    course: Number(courseId),
+    user: userinfo.value.id,
+    general: evaluate.value,
+    commnet: textarea.value,
+    date: date.value
+  }
+  courseStore.putEvaluate(user_evaluate)
+  courseStore.getUserEvaluate(userinfo.value.id, courseId)
+  userevaluate.value = courseStore.userEvaluate[0]
+  evaluateValue.value = userevaluate.value.general
+  isEvaluate.value = true
+}
+
+// 处理删除按钮
+const handleDelete = () => {
+  courseStore.deleteEvaluate(userinfo.value.id, courseId)
+  isEvaluate.value = false
+}
+
+// 处理更新按钮
+const handleUpdate = () => {
+  console.log()
+}
 </script>
 
 <template>
@@ -85,8 +122,8 @@ courseInfo.value = courseStore.courseInfo
       />
       <span class="worning" v-if="isInputInvalid">{{ inputErrorMessage }}</span>
       <div class="evaluate-button">
-        <el-button>保存</el-button>
-        <el-button type="primary">提交</el-button>
+        <el-button disabled>保存</el-button>
+        <el-button type="primary" @click="handleCommit">提交</el-button>
       </div>
     </div>
   </div>
@@ -114,8 +151,12 @@ courseInfo.value = courseStore.courseInfo
       </div>
     </div>
     <div class="content-button">
-      <el-button type="danger" size="small">删除</el-button>
-      <el-button type="primary" size="small">修改</el-button>
+      <el-button type="danger" size="small" @click="handleDelete" disabled
+        >删除</el-button
+      >
+      <el-button type="primary" size="small" @click="handleUpdate" disabled
+        >修改</el-button
+      >
     </div>
   </div>
 </template>
@@ -142,6 +183,7 @@ courseInfo.value = courseStore.courseInfo
   }
   .user-evaluate {
     display: flex;
+    margin-top: 50px;
     .evaluate-content2 {
       display: flex;
       flex-direction: column;
