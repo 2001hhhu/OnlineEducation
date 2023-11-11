@@ -66,12 +66,19 @@ const handleCommmit = async () => {
   console.log(userStore.user)
 }
 
-// 处理图片上传
+// 处理头像图片上传
+const isChangeAvatar = ref(false)
 const imageUrl = ref('')
 
-// const handleAvatarSuccess = (response, uploadFile) => {
-//   // imageUrl.value = URL.createObjectURL(uploadFile.raw!)
-// }
+const handleAvatarSuccess = (response) => {
+  console.log(response)
+  // imageUrl.value = URL.createObjectURL(uploadFile.raw!)
+  ElMessage.success('上传成功')
+}
+
+const handleUpload = (uploadFile) => {
+  console.log(uploadFile)
+}
 
 const beforeAvatarUpload = (rawFile) => {
   if (rawFile.type !== 'image/jpeg') {
@@ -253,16 +260,17 @@ const beforeAvatarUpload = (rawFile) => {
         <div class="dialog-body">
           <div class="dialog-left">
             <el-form-item class="avatar" label="头像" prop>
-              <div>
+              <div v-if="!isChangeAvatar">
                 <el-image v-if="userinfo.url"></el-image>
                 <el-image :src="squareUrl" v-else></el-image>
               </div>
-              <div>
+              <div v-else>
                 <el-upload
                   class="avatar-uploader"
-                  action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+                  action="http://localhost:3000/imageUrl"
                   :show-file-list="false"
                   :on-success="handleAvatarSuccess"
+                  :on-change="handleUpload"
                   :before-upload="beforeAvatarUpload"
                 >
                   <img v-if="imageUrl" :src="imageUrl" class="avatar-2" />
@@ -270,7 +278,13 @@ const beforeAvatarUpload = (rawFile) => {
                 </el-upload>
               </div>
               <div>
-                <el-button type="primary" size="small" radius>更换头像</el-button>
+                <el-button
+                  type="primary"
+                  size="small"
+                  radius
+                  @click="isChangeAvatar = !isChangeAvatar"
+                  >更换头像</el-button
+                >
               </div>
             </el-form-item>
             <el-form-item label="密码" prop="password">
@@ -389,8 +403,8 @@ const beforeAvatarUpload = (rawFile) => {
 .el-icon.avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
-  width: 178px;
-  height: 178px;
+  width: 120px;
+  height: 120px;
   text-align: center;
 }
 </style>
