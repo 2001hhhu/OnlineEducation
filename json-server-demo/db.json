@@ -883,20 +883,34 @@
   ],
   "evaluate": [
     {
-      "id": 1,
-      "course": 1,
-      "user": 1,
-      "general": 2.1,
-      "comment": "还行吧，老师讲的不错",
-      "date": "2019-8-19"
-    },
-    {
       "course": 8,
       "user": 1,
       "general": 3.5,
-      "commnet": "阿斯达啊实打实大时代",
+      "comment": "阿斯达啊实打实大时代",
       "date": "2023-11-09",
       "id": 2
+    },
+    {
+      "course": 1,
+      "user": 1,
+      "general": 4,
+      "comment": "OKSADASDAS",
+      "date": "2023-11-11",
+      "id": 3
+    }
+  ],
+  "imageUrl": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
     }
   ]
 }
