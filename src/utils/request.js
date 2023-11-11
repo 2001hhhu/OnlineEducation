@@ -1,6 +1,6 @@
 import axios from 'axios'
 // import { useUserStore } from '../stores/modules/user'
-import router from '@/router'
+// import router from '@/router'
 const baseURL = 'http://localhost:3000'
 import { ElMessage } from 'element-plus'
 
@@ -36,7 +36,7 @@ instance.interceptors.response.use(
   (err) => {
     if (err.response.status >= 400 && err.response.status < 500) {
       ElMessage.error(err.response.status)
-      router.push('/home')
+      // router.push('/home')
     }
     ElMessage.error(err.response.data.error)
     return Promise.reject(err.response.data.error)

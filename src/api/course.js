@@ -52,10 +52,10 @@ export const evaluatePostService = (obj) => {
   return request.post('/evaluate?course', obj)
 }
 
-export const evaluateDeleteService = (userId, courseId) => {
-  return request.delete(`/evaluate?course=${courseId}&user=${userId}`)
+export const evaluateDeleteService = (id) => {
+  return request.delete(`/evaluate/${id}`)
 }
 
-export const evaluateUpdateService = (userId, courseId, obj) => {
-  return request.put(`/evaluate?course=${courseId}&user=${userId}`, obj)
+export const evaluateUpdateService = (id, obj) => {
+  return request.put(`/evaluate/${id}`, obj)
 }

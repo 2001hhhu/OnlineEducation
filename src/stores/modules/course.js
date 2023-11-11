@@ -22,13 +22,13 @@ export const useCourseStore = defineStore(
       const res = await evaluatePostService(obj)
       console.log(res)
     }
-    const deleteEvaluate = async (userId, courseId) => {
-      const res = await evaluateDeleteService(userId, courseId)
+    const deleteEvaluate = async (id) => {
+      const res = await evaluateDeleteService(id)
       console.log(res)
       userEvaluate.value = ''
     }
-    const updateEvaluate = async (userId, courseId, obj) => {
-      const res = await evaluateUpdateService(userId, courseId, obj)
+    const updateEvaluate = async (id, obj) => {
+      const res = await evaluateUpdateService(id, obj)
       console.log(res)
       userEvaluate.value = obj
     }
