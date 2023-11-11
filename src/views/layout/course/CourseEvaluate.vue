@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeUnmount, ref } from 'vue'
+import { nextTick, onBeforeUnmount, ref } from 'vue'
 import { useCourseStore, useUserStore } from '@/stores'
 import { useRoute } from 'vue-router'
 
@@ -45,12 +45,21 @@ const userevaluate = ref({})
 // 存放用户的总评
 const evaluateValue = ref('0')
 courseStore.getUserEvaluate(userinfo.value.id, courseId)
-userevaluate.value = courseStore.userEvaluate[0]
+console.log(courseStore.userEvaluate[0])
 if (courseStore.userEvaluate.length !== 0) {
   isEvaluate.value = true
+  userevaluate.value = courseStore.userEvaluate[0]
   evaluateValue.value = userevaluate.value.general
+  console.log(userevaluate.value)
 } else {
   isEvaluate.value = false
+}
+// 当更新数据，修改数据，提交数据后重新获取评价再渲染
+const updateEvaluate = async () => {
+  await courseStore.getUserEvaluate(userinfo.value.id, courseId)
+  userevaluate.value = await courseStore.userEvaluate[0]
+  evaluateValue.value = await userevaluate.value.general
+  isEvaluate.value = await true
 }
 
 // 获取课程信息并渲染到页面
@@ -59,6 +68,7 @@ const courseInfo = ref({})
 courseInfo.value = courseStore.courseInfo
 
 // 处理提交按钮把评价提交给后端
+// 获取当日时间
 let getTime = new Date().getTime()
 let time = new Date(getTime)
 const date = ref()
@@ -74,25 +84,43 @@ const handleCommit = () => {
     course: Number(courseId),
     user: userinfo.value.id,
     general: evaluate.value,
-    commnet: textarea.value,
+    comment: textarea.value,
     date: date.value
   }
   courseStore.putEvaluate(user_evaluate)
-  courseStore.getUserEvaluate(userinfo.value.id, courseId)
-  userevaluate.value = courseStore.userEvaluate[0]
-  evaluateValue.value = userevaluate.value.general
-  isEvaluate.value = true
+  updateEvaluate()
+  console.log(userevaluate.value)
 }
 
 // 处理删除按钮
 const handleDelete = () => {
-  courseStore.deleteEvaluate(userinfo.value.id, courseId)
+  courseStore.deleteEvaluate(userevaluate.value.id)
+  textarea.value = ''
+  evaluate.value = ''
   isEvaluate.value = false
 }
 
 // 处理更新按钮
+const isUpdate = ref(false)
 const handleUpdate = () => {
-  console.log()
+  nextTick(() => {
+    textarea.value = userevaluate.value.comment
+    evaluate.value = userevaluate.value.general
+    isUpdate.value = true
+    isEvaluate.value = false
+  })
+}
+const handleUploadCommit = () => {
+  let user_evaluate = {
+    course: Number(courseId),
+    user: userinfo.value.id,
+    general: evaluate.value,
+    comment: textarea.value,
+    date: date.value
+  }
+  courseStore.updateEvaluate(userevaluate.value.id, user_evaluate)
+  updateEvaluate()
+  console.log(userevaluate.value.comment)
 }
 </script>
 
@@ -121,9 +149,13 @@ const handleUpdate = () => {
         placeholder="可以从课程内容、授课方式的角度出发，或分享你学到的内容"
       />
       <span class="worning" v-if="isInputInvalid">{{ inputErrorMessage }}</span>
-      <div class="evaluate-button">
+      <div class="evaluate-button" v-if="!isUpdate">
         <el-button disabled>保存</el-button>
         <el-button type="primary" @click="handleCommit">提交</el-button>
+      </div>
+      <div class="evaluate-button" v-else>
+        <el-button @click="isEvaluate = true">返回</el-button>
+        <el-button type="primary" @click="handleUploadCommit">提交</el-button>
       </div>
     </div>
   </div>
@@ -151,12 +183,8 @@ const handleUpdate = () => {
       </div>
     </div>
     <div class="content-button">
-      <el-button type="danger" size="small" @click="handleDelete" disabled
-        >删除</el-button
-      >
-      <el-button type="primary" size="small" @click="handleUpdate" disabled
-        >修改</el-button
-      >
+      <el-button type="danger" size="small" @click="handleDelete">删除</el-button>
+      <el-button type="primary" size="small" @click="handleUpdate">修改</el-button>
     </div>
   </div>
 </template>
