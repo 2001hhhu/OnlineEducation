@@ -122,7 +122,7 @@ const handleQuit = () => {
   <div class="footer">
     <LayoutFooter></LayoutFooter>
   </div>
-  <el-dialog v-model="dialogTableVisible" class="login-dialog">
+  <el-dialog v-model="dialogTableVisible" class="login-dialog" align-center>
     <LoginWindow @updateisLogin="updateisLogin"></LoginWindow>
   </el-dialog>
 </template>

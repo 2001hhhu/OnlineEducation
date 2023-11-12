@@ -1,6 +1,6 @@
 import * as echarts from 'echarts/core'
 // 引入要用到的图表
-import { LineChart } from 'echarts/charts'
+import { LineChart, BarChart } from 'echarts/charts'
 // 引入提示框、数据集等组件
 import {
   TitleComponent,
@@ -24,6 +24,7 @@ echarts.use([
   DatasetComponent,
   TransformComponent,
   CanvasRenderer,
+  BarChart,
   LabelLayout,
   UniversalTransition,
   LegendComponent

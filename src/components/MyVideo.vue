@@ -13,7 +13,7 @@ import 'video.js/dist/video-js.min.css'
 // 获取视频地址
 const props = defineProps({
   src: String,
-  wdith: String,
+  width: String,
   height: String
 })
 
@@ -24,7 +24,7 @@ const videoRef = ref()
 const videoPlayer = ref()
 const videoWrapStyles = computed(() => {
   return {
-    width: props.wdith || '100%',
+    width: props.width || '100%',
     height: props.height || '100%'
   }
 })
