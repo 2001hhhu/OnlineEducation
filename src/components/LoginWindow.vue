@@ -73,11 +73,13 @@ const handleLogin = async () => {
 }
 
 //注册页面
-const isRegister = ref(false)
+const isRegister = ref(true)
 const handleRegister = async () => {
   await form.value.validate()
   const res = await userRegisterService(loginForm.value)
-  console.log(res.data.token)
+  console.log(res)
+  ElMessage.success('注册成功')
+  isRegister.value = true
 }
 </script>
 
@@ -88,7 +90,7 @@ const handleRegister = async () => {
     class="demo-tabs"
     @tab-click="handleClick"
   >
-    <el-tab-pane label="账号登录" name="first" v-if="!isRegister">
+    <el-tab-pane label="账号登录" name="first" v-if="isRegister">
       <el-form
         label-position="middle"
         label-width="100px"
@@ -115,7 +117,7 @@ const handleRegister = async () => {
           <el-button type="success" @click="handleLogin" auto-insert-space
             >登录</el-button
           >
-          <el-button @click="isRegister = true" type="primary" auto-insert-space>
+          <el-button @click="isRegister = false" type="primary" auto-insert-space>
             注册
           </el-button>
         </el-form-item>
@@ -145,7 +147,7 @@ const handleRegister = async () => {
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click="isRegister = false" type="info" auto-insert-space round
+          <el-button @click="isRegister = true" type="info" auto-insert-space round
             >返回</el-button
           >
           <el-button @click="handleRegister" type="primary" auto-insert-space>
@@ -163,7 +165,7 @@ const handleRegister = async () => {
         size="large"
         hide-required-asterisk="true"
         style="max-width: 460px"
-        class="login_form"
+        class="login-form"
       >
         <el-form-item label="手机号" prop="phone">
           <el-input placeholder="请输入手机号" v-model="loginForm.phone">
@@ -176,6 +178,10 @@ const handleRegister = async () => {
           <el-input placeholder="请输入密码" v-model="loginForm.password"
             ><template #prefix> <i-ep-lock></i-ep-lock> </template
           ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success" auto-insert-space>登录</el-button>
+          <el-button type="primary" auto-insert-space>手机注册</el-button>
         </el-form-item>
       </el-form>
     </el-tab-pane>

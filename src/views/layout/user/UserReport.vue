@@ -154,23 +154,6 @@ onMounted(() => {
 
 // 处理选择时段的标签页
 const activeDate = ref('周')
-// const handleClick = (tab) => {
-//   // if (tab.name === '周') {
-//   //   nextTick(() => {
-//   //     chart1.value.resize()
-//   //   })
-//   // }
-//   // if (tab.name === '月') {
-//   //   nextTick(() => {
-//   //     chart1.value.resize()
-//   //   })
-//   // }
-//   // if (tab.name === '年') {
-//   //   nextTick(() => {
-//   //     chart1.value.resize()
-//   //   })
-//   // }
-// }
 </script>
 
 <template>

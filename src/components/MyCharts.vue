@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import echarts from '@/utils/echarts.js'
 
 const domRef = ref()
@@ -45,12 +45,13 @@ onBeforeUnmount(() => {
   chart.dispose()
 })
 
-// watch(
-//   () => {
-//     chart.setOption(props.options)
-//   },
-//   { deep: true }
-// )
+watch(
+  () => props.option,
+  () => {
+    chart.setOption(props.options, true)
+  },
+  { deep: true }
+)
 </script>
 
 <template>
