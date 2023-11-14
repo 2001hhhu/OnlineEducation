@@ -110,26 +110,6 @@ const handleCategory = async (term, category, state) => {
       </div>
     </div>
     <span class="title">课程</span>
-    <!-- <div class="body">
-      <ul v-if="!isEmpty">
-        <li v-for="item in courseList" :key="item.id" @click="routerPush(item.id)">
-          <div class="course">
-            <el-image :src="getImageUrl(item.url)" fit="fit"></el-image>
-          </div>
-
-          <div class="course-introduce">
-            <div>
-              <p>{{ item.name }}</p>
-              <span>{{ item.lecturer }}</span
-              ><span>参加人数：{{ item.participants }}</span
-              ><span>学时：{{ item.hour }}</span> <span>学分{{ item.credit }}</span>
-            </div>
-            <div class="detail-introudce">课程介绍巴拉巴拉...</div>
-          </div>
-        </li>
-      </ul>
-      <div class="empty" v-else>没有相关内容</div>
-    </div> -->
     <!-- <el-button type="primary" @click="loading = !loading"></el-button> -->
     <div class="body">
       <el-skeleton :loading="loading" animated>
