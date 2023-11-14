@@ -1,6 +1,5 @@
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
-import * as echarts from 'echarts'
+import { ref } from 'vue'
 import { useUserStore } from '@/stores/modules/user.js'
 import { useReportStore } from '@/stores/modules/report.js'
 // import { EleResize } from '@/utils/esresize' //图表自适应
@@ -11,87 +10,57 @@ function getImageUrl(url) {
 }
 
 // 获取用户报表模块的数据
+const userStore = useUserStore()
+userStore.getUser()
+const userInfo = userStore.user
+console.log(userInfo.value)
 const reportModule = useReportStore()
 reportModule.getLearnModule(1)
 
 // 导入用户学习进度环形图
-let course = ref([])
-
-const init2 = (ref) => {
-  // const chart = echarts.init(document.querySelector('.course_report'))
-  const chart = echarts.init(ref)
-  window.addEventListener(
-    'resize',
-    () => {
-      chart.resize()
-    },
-    false
-  )
-  const option = {
-    title: {
-      text: '{a|完成情况}',
-      subtext: '{b|共7节}',
-      subtextStyle: {
-        rich: {
-          b: {
-            fontSize: '16'
-          }
+const option = {
+  title: {
+    text: '{a|完成情况}',
+    subtext: '{b|共7节}',
+    subtextStyle: {
+      rich: {
+        b: {
+          fontSize: '16'
         }
-      },
-      textStyle: {
-        rich: {
-          a: {
-            fontSize: '18'
-          }
+      }
+    },
+    textStyle: {
+      rich: {
+        a: {
+          fontSize: '18'
         }
-      },
-      left: 'center',
-      top: 'center'
+      }
     },
-    tooltip: {
-      trigger: 'item',
-      formatter: '{a} <br/>{b} : {c} ({d}%)'
-    },
-    legend: {
-      orient: 'vertical',
-      left: 'left',
-      data: ['已完成', '未完成']
-    },
-    series: {
-      name: '课程',
-      type: 'pie',
-      radius: ['40%', '55%'],
-      center: ['50%', '50%'],
-      data: [
-        { value: 3, name: '已完成' },
-        { value: 4, name: '未完成' }
-      ]
-    }
+    left: 'center',
+    top: 'center'
+  },
+  tooltip: {
+    trigger: 'item',
+    formatter: '{a} <br/>{b} : {c} ({d}%)'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left',
+    data: ['已完成', '未完成']
+  },
+  series: {
+    name: '课程',
+    type: 'pie',
+    radius: ['40%', '55%'],
+    center: ['50%', '50%'],
+    data: [
+      { value: 3, name: '已完成' },
+      { value: 4, name: '未完成' }
+    ]
   }
-  chart.setOption(option)
 }
-// 完成v-for li中的echarts渲染
-const chartList = () => {
-  nextTick(() => {
-    course.value.forEach((item) => {
-      init2(item)
-    })
-  })
-}
-// 导入Echarts图像
-const userStore = useUserStore()
-userStore.getUser()
-const init = (title, data, xdata, ref) => {
-  const chart1 = echarts.init(document.querySelector(ref))
-
-  // 图表自适应
-  window.addEventListener(
-    'resize',
-    () => {
-      chart1.resize()
-    },
-    false
-  )
+// 获取用户学习时间并绘制成option传给echarts
+const getOption = (title, data, xdata) => {
   const option = {
     title: {
       text: title
@@ -112,10 +81,13 @@ const init = (title, data, xdata, ref) => {
       }
     ]
   }
-  chart1.setOption(option)
+  return option
 }
+// 一周每天的学习时间
 const weekData = userStore.user.weekDuration
+// 一月每天的学习时间
 const monthData = userStore.user.monthDuration
+// 一年每月的学习时间
 const yearData = userStore.user.yearDuration
 const dayX = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
 const weekX = []
@@ -136,21 +108,6 @@ const yearX = [
   '十一月',
   '十二月'
 ]
-onMounted(() => {
-  nextTick(() => {
-    chartList()
-  })
-  console.log(course)
-  // nextTick(() => {
-  //   init('每日学习时长', weekData, dayX, '.report-1')
-  //   init('每日学习时长', monthData, weekX, '.report-2')
-  //   init('每日学习时长', yearData, yearX, '.report-3')
-  // })
-  init('每日学习时长', weekData, dayX, '.report-1')
-  init('每日学习时长', monthData, weekX, '.report-2')
-  init('每月学习总时长', yearData, yearX, '.report-3')
-  // handleClick()
-})
 
 // 处理选择时段的标签页
 const activeDate = ref('周')
@@ -205,47 +162,22 @@ const activeDate = ref('周')
                 <span>{{ item.course }}</span>
                 <span>完成：{{ item.completion }} </span>
                 <span>未完成：{{ item.incomplete }}</span>
-                <div class="course_report" ref="course"></div>
+                <div class="course_report">
+                  <MyCharts :options="option"></MyCharts>
+                </div>
               </div>
             </li>
           </ul>
         </div>
-        <!-- 尝试对el-tab里的echart进行修bug -->
-        <!-- <div class="report-1" ref="report1"></div>
-        <div class="report-2" ref="report2"></div>
-        <div class="report-3" ref="report3"></div> -->
-        <!-- <el-tabs v-model="activeDate" @click="handleClick">
-          <el-tab-pane label="周" name="周" lazy="true">
-            <div class="report-1" id="1" ref="report1"></div>
-          </el-tab-pane>
-          <el-tab-pane label="月" name="月" lazy="true">
-            <div class="report-2" id="2" ref="report2"></div>
-          </el-tab-pane>
-          <el-tab-pane label="年" name="年" lazy="true">
-            <div class="report-3" id="3" ref="report3"></div>
-          </el-tab-pane>
-        </el-tabs> -->
-        <!-- <el-tabs v-model="activeDate" @click="handleClick">
-          <el-tab-pane label="周" name="周">
-            <div v-if="activeDate === '周'" class="report-1" id="1" ref="report1"></div>
-          </el-tab-pane>
-
-          <el-tab-pane label="月" name="月">
-            <div v-if="activeDate === '月'" class="report-2" id="2" ref="report2"></div>
-          </el-tab-pane>
-          <el-tab-pane label="年" name="年">
-            <div v-if="activeDate === '年'" class="report-3" id="3" ref="report3"></div>
-          </el-tab-pane> -->
-
         <el-tabs v-model="activeDate" @click="handleClick">
           <el-tab-pane label="周" name="周">
-            <div class="report-1"></div>
+            <MyCharts :options="getOption('每日学习时长', weekData, dayX)"></MyCharts>
           </el-tab-pane>
           <el-tab-pane label="月" name="月">
-            <div class="report-2"></div>
+            <MyCharts :options="getOption('每日学习时长', monthData, weekX)"></MyCharts>
           </el-tab-pane>
           <el-tab-pane label="年" name="年">
-            <div class="report-3"></div>
+            <MyCharts :options="getOption('每月学习总时长', yearData, yearX)"></MyCharts>
           </el-tab-pane>
         </el-tabs>
       </div>
