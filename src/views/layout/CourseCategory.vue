@@ -8,6 +8,9 @@ function getImageUrl(url) {
   return new URL(url, import.meta.url).href
 }
 
+// 处理骨架屏, loading为flase显示内容
+const loading = ref(true)
+
 //处理课程学期单选框
 const radioGroup1 = ref('全部')
 const terms = [
@@ -18,20 +21,6 @@ const terms = [
   '2021-2022学年 第二学期',
   '2021-2022学年 第一学期'
 ]
-// const handleTerm = (val) => {
-//   courseList.value = []
-//   if (val === '全部') {
-//     courseList.value = courseListTemp.value
-//   } else {
-//     courseListTemp.value.forEach((item) => {
-//       if (item.term === val) {
-//         courseList.value.push(item)
-//       }
-//     })
-//   }
-
-//   console.log(courseList.value)
-// }
 
 // 路由跳转
 const router = useRouter()
@@ -59,14 +48,17 @@ const courseList = ref([])
 const getCourseList = async () => {
   const res = await courseListService('全部', '全部', '全部')
   courseList.value = res.data
+  loading.value = false
 }
 getCourseList()
 const isEmpty = ref(false)
 const handleCategory = async (term, category, state) => {
+  loading.value = true
   const res = await courseListService(term, category, state)
   courseList.value = res.data
   if (courseList.value.length === 0) isEmpty.value = true
   else isEmpty.value = false
+  loading.value = false
 }
 </script>
 
@@ -118,7 +110,7 @@ const handleCategory = async (term, category, state) => {
       </div>
     </div>
     <span class="title">课程</span>
-    <div class="body">
+    <!-- <div class="body">
       <ul v-if="!isEmpty">
         <li v-for="item in courseList" :key="item.id" @click="routerPush(item.id)">
           <div class="course">
@@ -137,6 +129,49 @@ const handleCategory = async (term, category, state) => {
         </li>
       </ul>
       <div class="empty" v-else>没有相关内容</div>
+    </div> -->
+    <!-- <el-button type="primary" @click="loading = !loading"></el-button> -->
+    <div class="body">
+      <el-skeleton :loading="loading" animated>
+        <template #template>
+          <div class="loading-body">
+            <div class="loading-img">
+              <el-skeleton-item class="img" variant="image" />
+            </div>
+            <div class="loading-introduce">
+              <div>
+                <el-skeleton-item variant="text" style="margin: 5px; width: 10%" />
+                <br />
+                <el-skeleton-item
+                  variant="text"
+                  style="margin: 5px; width: 25%; margin-bottom: 10px"
+                />
+                <el-skeleton-item variant="text" style="margin: 5px" />
+              </div>
+            </div>
+          </div>
+        </template>
+        <template #default>
+          <ul v-if="!isEmpty">
+            <li v-for="item in courseList" :key="item.id" @click="routerPush(item.id)">
+              <div class="course">
+                <el-image :src="getImageUrl(item.url)" fit="fit"></el-image>
+              </div>
+
+              <div class="course-introduce">
+                <div>
+                  <p>{{ item.name }}</p>
+                  <span>{{ item.lecturer }}</span
+                  ><span>参加人数：{{ item.participants }}</span
+                  ><span>学时：{{ item.hour }}</span> <span>学分{{ item.credit }}</span>
+                </div>
+                <div class="detail-introudce">课程介绍巴拉巴拉...</div>
+              </div>
+            </li>
+          </ul>
+          <div class="empty" v-else>没有相关内容</div>
+        </template>
+      </el-skeleton>
     </div>
   </div>
 </template>
@@ -218,6 +253,26 @@ span {
       .detail-introudce {
         margin-top: 10px;
         font-size: 14px;
+      }
+    }
+  }
+  .el-skeleton {
+    width: 100%;
+    .loading-body {
+      display: flex;
+      margin-bottom: 10px;
+      background-color: #fff;
+      .loading-img {
+        .img {
+          height: 144px;
+          width: 266px;
+        }
+      }
+      .loading-introduce {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
       }
     }
   }
