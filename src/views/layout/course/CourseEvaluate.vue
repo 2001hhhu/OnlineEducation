@@ -89,7 +89,6 @@ const handleCommit = () => {
   }
   courseStore.putEvaluate(user_evaluate)
   updateEvaluate()
-  console.log(userevaluate.value)
 }
 
 // 处理删除按钮
@@ -120,7 +119,6 @@ const handleUploadCommit = () => {
   }
   courseStore.updateEvaluate(userevaluate.value.id, user_evaluate)
   updateEvaluate()
-  console.log(userevaluate.value.comment)
 }
 </script>
 

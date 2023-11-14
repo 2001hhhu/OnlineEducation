@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/modules/user.js'
 import { useReportStore } from '@/stores/modules/report.js'
-// import { EleResize } from '@/utils/esresize' //图表自适应
 
 // 引入本地图片
 function getImageUrl(url) {
@@ -13,9 +12,8 @@ function getImageUrl(url) {
 const userStore = useUserStore()
 userStore.getUser()
 const userInfo = userStore.user
-console.log(userInfo.value)
 const reportModule = useReportStore()
-reportModule.getLearnModule(1)
+reportModule.getLearnModule(userInfo.id)
 
 // 导入用户学习进度环形图
 const option = {
