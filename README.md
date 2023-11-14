@@ -76,10 +76,8 @@ Vue3+Element-plus+Pinia+Vue router+video.js+websocket+ECharts+Vite
 
 ### json-server启动
 
-文件在./json-server-demo/db.json
-
 ```
-json-server --watch db.json
+pnpm jsondb
 ```
 
 ### Projec Setup
