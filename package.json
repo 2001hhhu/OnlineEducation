@@ -10,7 +10,7 @@
     "format": "prettier --write src/",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
-    "jsondb": "json-server --watch ../json-server-demo/db.json"
+    "jsondb": "json-server --watch ./json-server-demo/db.json"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
