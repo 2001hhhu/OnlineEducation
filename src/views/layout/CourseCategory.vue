@@ -189,8 +189,6 @@ span {
     span {
       line-height: 47px;
     }
-    .el-radio-group {
-    }
   }
   .classification {
     display: flex;
