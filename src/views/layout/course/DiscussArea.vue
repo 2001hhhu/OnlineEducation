@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { ElMessage } from 'element-plus'
 
 // 获取课程信息
 const route = useRoute()
@@ -10,6 +11,11 @@ const courseId = route.query.id
 const inpputModel = ref('')
 const inputTitle = ref('')
 const inputContent = ref('')
+
+// 处理提交
+const handleCommit = () => {
+  ElMessage.SuccessFilled('提交成功')
+}
 </script>
 
 <template>
@@ -47,6 +53,9 @@ const inputContent = ref('')
           :rows="6"
           type="textarea"
         ></el-input>
+      </div>
+      <div>
+        <el-button type="primary" @click="handleCommit">提交</el-button>
       </div>
     </div>
   </div>
