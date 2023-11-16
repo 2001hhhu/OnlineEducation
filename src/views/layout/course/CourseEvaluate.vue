@@ -45,12 +45,10 @@ const userevaluate = ref({})
 // 存放用户的总评
 const evaluateValue = ref('0')
 courseStore.getUserEvaluate(userinfo.value.id, courseId)
-console.log(courseStore.userEvaluate[0])
 if (courseStore.userEvaluate.length !== 0) {
   isEvaluate.value = true
   userevaluate.value = courseStore.userEvaluate[0]
   evaluateValue.value = userevaluate.value.general
-  console.log(userevaluate.value)
 } else {
   isEvaluate.value = false
 }

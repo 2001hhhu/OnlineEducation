@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useCourseStore } from '@/stores'
 
 // 处理搜索框
@@ -19,6 +19,12 @@ const courseStore = useCourseStore()
 courseStore.getCourseInfo(courseId)
 const courseInfo = ref({})
 courseInfo.value = courseStore.courseInfo
+
+// 发起主题
+const router = useRouter()
+const handlTheme = () => {
+  router.push({ path: '/course/discussion', query: { id: courseId } })
+}
 </script>
 
 <template>
@@ -41,7 +47,7 @@ courseInfo.value = courseStore.courseInfo
     </div>
     <div class="area-middle">
       <p>欢迎大家来到讨论区！本讨论区供各位同学就课程问题进行交流学习。</p>
-      <el-button type="primary">发起主题</el-button>
+      <el-button type="primary" @click="handlTheme">发起主题</el-button>
     </div>
     <div class="area-body">
       <div class="theme-title">

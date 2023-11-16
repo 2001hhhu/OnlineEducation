@@ -45,6 +45,10 @@ const router = createRouter({
             {
               path: '/course/content',
               component: () => import('@/views/layout/course/CourseContent.vue')
+            },
+            {
+              path: '/course/discussion',
+              component: () => import('@/views/layout/course/DiscussArea.vue')
             }
           ]
         },
