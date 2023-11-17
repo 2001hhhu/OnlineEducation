@@ -28,7 +28,7 @@ const handleCommit = () => {
         <el-breadcrumb-item>讨论区</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <div>
+    <div class="discussion-content">
       <div>
         <p>所属讨论板块</p>
         <el-input
@@ -54,7 +54,7 @@ const handleCommit = () => {
           type="textarea"
         ></el-input>
       </div>
-      <div>
+      <div class="discussion-button">
         <el-button type="primary" @click="handleCommit">提交</el-button>
       </div>
     </div>
@@ -69,6 +69,11 @@ const handleCommit = () => {
     border-bottom: 1px solid rgb(238, 238, 238);
     padding-bottom: 10px;
     margin-bottom: 20px;
+  }
+  .discussion-content {
+    .discussion-button {
+      margin-top: 15px;
+    }
   }
 }
 </style>

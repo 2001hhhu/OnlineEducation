@@ -37,6 +37,7 @@ const getCourseList = async () => {
   const res = await courseAllListService()
   courseList.value = res.data
 }
+courseList.value = courseList.value.filter((item) => item.id <= 10)
 getCourseList()
 </script>
 

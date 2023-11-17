@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { getImageUrl } from '@/utils/getphoto'
 import { useRouter, useRoute } from 'vue-router'
-import { useCourseStore } from '@/stores'
+import { useUserStore, useCourseStore, useReportStore } from '@/stores'
 
 // 处理菜单的菜单栏选中
 const route = useRoute()
@@ -13,11 +13,28 @@ onMounted(() => {
   activeIndex.value = router.currentRoute.value.path
 })
 
+// 获取用户信息
+const userStore = useUserStore()
+const userInfo = userStore.user
+
 // 获取课程信息并渲染到页面
 const courseStore = useCourseStore()
 courseStore.getCourseInfo(courseId)
 const courseInfo = ref({})
 courseInfo.value = courseStore.courseInfo
+
+// 获取学习时长并以弹窗形式展示
+const learnTime = ref(false)
+const handleLearn = () => {
+  learnTime.value = true
+}
+const handleClose = () => {
+  learnTime.value = false
+}
+const reportStore = useReportStore()
+reportStore.getCourseModule(userInfo.id, courseId)
+const reportInfo = reportStore.courseModule
+console.log(reportInfo)
 </script>
 
 <template>
@@ -27,7 +44,7 @@ courseInfo.value = courseStore.courseInfo
       <p>{{ courseInfo.name }}</p>
       <span>{{ courseInfo.lecturer }}</span>
     </div>
-    <div class="duration">
+    <div class="duration" @click="handleLearn">
       <el-icon size="large"><i-ep-PieChart /></el-icon>
       <span>学习时长</span>
     </div>
@@ -66,6 +83,14 @@ courseInfo.value = courseStore.courseInfo
       </el-col>
     </el-row>
   </div>
+  <el-dialog v-model="learnTime" title="学习时长" width="30%" :before-close="handleClose">
+    <span>This is a message</span>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="learnTime = false" type="primary" radius>确定</el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <style lang="scss" scoped>
@@ -99,6 +124,9 @@ courseInfo.value = courseStore.courseInfo
     }
     span {
       font-size: 12px;
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
 }

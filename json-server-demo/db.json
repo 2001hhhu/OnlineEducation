@@ -803,6 +803,7 @@
       "user": 1,
       "id": 1,
       "course": "计算机网络",
+      "courseId": 1,
       "completion": 3,
       "incomplete": 4
     },
@@ -810,6 +811,7 @@
       "user": 1,
       "id": 2,
       "course": "数据结构与算法",
+      "courseId": 2,
       "completion": 3,
       "incomplete": 4
     },
@@ -824,6 +826,7 @@
       "user": 1,
       "id": 4,
       "course": "高等物理",
+      "courseId": 4,
       "completion": 3,
       "incomplete": 4
     },
@@ -831,6 +834,7 @@
       "user": 1,
       "id": 5,
       "course": "智能系统",
+      "courseId": 5,
       "completion": 3,
       "incomplete": 4
     },
@@ -838,13 +842,39 @@
       "user": 1,
       "id": 6,
       "course": "C语言",
+      "courseId": 6,
       "completion": 3,
       "incomplete": 4
     },
     {
       "user": 1,
       "id": 7,
-      "course": "张老师",
+      "course": "Java",
+      "courseId": 7,
+      "completion": 3,
+      "incomplete": 4
+    },
+    {
+      "user": 1,
+      "id": 8,
+      "course": "道德文化修养",
+      "courseId": 8,
+      "completion": 3,
+      "incomplete": 4
+    },
+    {
+      "user": 1,
+      "id": 9,
+      "course": "大自然",
+      "courseId": 9,
+      "completion": 3,
+      "incomplete": 4
+    },
+    {
+      "user": 1,
+      "id": 10,
+      "course": "ELC4",
+      "courseId": 10,
       "completion": 3,
       "incomplete": 4
     }
