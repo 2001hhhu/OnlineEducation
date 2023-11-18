@@ -33,8 +33,52 @@ const handleClose = () => {
 }
 const reportStore = useReportStore()
 reportStore.getCourseModule(userInfo.id, courseId)
-const reportInfo = reportStore.courseModule
+const reportInfo = reportStore.courseModule[0]
+const sum = reportInfo.completion + reportInfo.incomplete
+console.log(sum)
 console.log(reportInfo)
+// 设置报表option
+const option = {
+  title: {
+    text: '{a|完成情况}',
+    subtext: `{b|共${sum}}`,
+    subtextStyle: {
+      rich: {
+        b: {
+          fontSize: '16'
+        }
+      }
+    },
+    textStyle: {
+      rich: {
+        a: {
+          fontSize: '18'
+        }
+      }
+    },
+    left: 'center',
+    top: 'center'
+  },
+  tooltip: {
+    trigger: 'item',
+    formatter: '{a} <br/>{b} : {c} ({d}%)'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left',
+    data: ['已完成', '未完成']
+  },
+  series: {
+    name: '课程',
+    type: 'pie',
+    radius: ['40%', '55%'],
+    center: ['50%', '50%'],
+    data: [
+      { value: reportInfo.completion, name: '已完成' },
+      { value: reportInfo.incomplete, name: '未完成' }
+    ]
+  }
+}
 </script>
 
 <template>
@@ -84,7 +128,9 @@ console.log(reportInfo)
     </el-row>
   </div>
   <el-dialog v-model="learnTime" title="学习时长" width="30%" :before-close="handleClose">
-    <span>This is a message</span>
+    <div class="learnCharts">
+      <MyCharts :options="option"></MyCharts>
+    </div>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="learnTime = false" type="primary" radius>确定</el-button>
@@ -151,6 +197,14 @@ console.log(reportInfo)
         background-color: rgb(156, 225, 247) !important;
       }
     }
+  }
+}
+.el-dialog {
+  width: 30vw;
+  height: 30vw;
+  .learnCharts {
+    width: 30vw;
+    height: 30vw;
   }
 }
 </style>

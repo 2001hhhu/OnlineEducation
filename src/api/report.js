@@ -13,7 +13,7 @@ export const learnService = (user) => {
 }
 
 export const learnCourseService = (user, courseId) => {
-  return request.get(`/learn/?user=${user}&ccourseId=${courseId}`)
+  return request.get(`/learn/?user=${user}&courseId=${courseId}`)
 }
 
 export const courseService = (user) => {

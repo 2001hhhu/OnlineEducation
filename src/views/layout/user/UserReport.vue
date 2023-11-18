@@ -248,24 +248,6 @@ const activeDate = ref('周')
         }
       }
     }
-
-    .el-tabs {
-      .el-tab-pane {
-        width: 100%;
-        height: 600px;
-        .report-1 {
-          height: 100%;
-        }
-        .report-2 {
-          height: 100%;
-          width: 100%;
-        }
-        .report-3 {
-          height: 100%;
-          width: 100%;
-        }
-      }
-    }
   }
 }
 </style>
