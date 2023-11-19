@@ -41,10 +41,10 @@ const rules = {
 
 //处理标签页跳转
 const activeName = ref('first')
-const handleClick = (tab, event) => {
-  console.log(tab, event)
-  console.log(activeName.value)
-}
+// const handleClick = (tab, event) => {
+//   console.log(tab, event)
+//   console.log(activeName.value)
+// }
 watch(activeName, () => {
   clearloginForm()
 })

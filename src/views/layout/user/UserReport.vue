@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import { useUserStore } from '@/stores/modules/user.js'
 import { useReportStore } from '@/stores/modules/report.js'
 
@@ -109,6 +109,30 @@ const yearX = [
 
 // 处理选择时段的标签页
 const activeDate = ref('周')
+const isshow1 = ref(true)
+const isshow2 = ref(true)
+const isshow3 = ref(true)
+const handleClick = (tab) => {
+  if (tab.props.name === '周') {
+    nextTick(() => {
+      isshow1.value = true
+      isshow2.value = false
+      isshow3.value = false
+    })
+  } else if (tab.props.name === '月') {
+    nextTick(() => {
+      isshow1.value = false
+      isshow2.value = true
+      isshow3.value = false
+    })
+  } else {
+    nextTick(() => {
+      isshow1.value = false
+      isshow2.value = false
+      isshow3.value = true
+    })
+  }
+}
 </script>
 
 <template>
@@ -167,17 +191,34 @@ const activeDate = ref('周')
             </li>
           </ul>
         </div>
-        <el-tabs v-model="activeDate" @click="handleClick">
-          <el-tab-pane label="周" name="周">
-            <MyCharts :options="getOption('每日学习时长', weekData, dayX)"></MyCharts>
-          </el-tab-pane>
-          <el-tab-pane label="月" name="月">
-            <MyCharts :options="getOption('每日学习时长', monthData, weekX)"></MyCharts>
-          </el-tab-pane>
-          <el-tab-pane label="年" name="年">
-            <MyCharts :options="getOption('每月学习总时长', yearData, yearX)"></MyCharts>
-          </el-tab-pane>
-        </el-tabs>
+        <div class="report-tabs">
+          <el-tabs v-model="activeDate" @tab-click="handleClick">
+            <el-tab-pane label="周" name="周">
+              <div class="tab">
+                <MyCharts
+                  :options="getOption('每日学习时长', weekData, dayX)"
+                  v-if="isshow1"
+                ></MyCharts>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="月" name="月">
+              <div class="tab">
+                <MyCharts
+                  :options="getOption('每日学习时长', monthData, weekX)"
+                  v-if="isshow2"
+                ></MyCharts>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="年" name="年">
+              <div class="tab">
+                <MyCharts
+                  :options="getOption('每月学习时长', yearData, yearX)"
+                  v-if="isshow3"
+                ></MyCharts>
+              </div>
+            </el-tab-pane>
+          </el-tabs>
+        </div>
       </div>
     </el-card>
   </div>
@@ -245,6 +286,16 @@ const activeDate = ref('周')
         }
         .course_report {
           height: 80%;
+        }
+      }
+    }
+    .report-tabs {
+      .el-tabs {
+        .el-tab-pane {
+          .tab {
+            height: 50vh;
+            width: 100%;
+          }
         }
       }
     }

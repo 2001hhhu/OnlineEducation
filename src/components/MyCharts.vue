@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import echarts from '@/utils/echarts.js'
 
 const domRef = ref()
@@ -31,13 +31,15 @@ const cancalDebounce = debounce(resizeHandler, 500)
 const initVideo = () => {
   chart = echarts.init(domRef.value)
   // 重绘图表函数
-
   window.addEventListener('resize', cancalDebounce)
   chart.setOption(props.options)
 }
 
 onMounted(() => {
-  initVideo()
+  nextTick(() => {
+    initVideo()
+  })
+  // initVideo()
 })
 
 onBeforeUnmount(() => {

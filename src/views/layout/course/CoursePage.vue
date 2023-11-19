@@ -41,7 +41,7 @@ console.log(reportInfo)
 const option = {
   title: {
     text: '{a|完成情况}',
-    subtext: `{b|共${sum}}`,
+    subtext: `{b|共${sum}节}`,
     subtextStyle: {
       rich: {
         b: {
